@@ -1,5 +1,6 @@
 aid: dog-api
-url: https://raw.githubusercontent.com/api-search/dog-api/refs/heads/main/apis.yml
+url: 
+  https://raw.githubusercontent.com/api-search/dog-api/refs/heads/main/apis.yml
 apis:
   - aid: dog-api:dog-api
     name: Dog API
@@ -9,10 +10,9 @@ apis:
     properties:
       - url: ' https://dog.ceo/dog-api/'
         type: Documentation
-    description: |-
-
-      The internets biggest collection of open source dog pictures. Fetching you
-      over 20000 dog images accessible by over 120 breeds. 
+    description: >-
+      The internets biggest collection of open source dog pictures. Fetching you over
+      20000 dog images accessible by over 120 breeds.
 name: Dog API
 tags:
   - Dogs
@@ -22,10 +22,9 @@ access: 3rd-Party
 created: '2024-11-14'
 modified: '2026-03-16'
 position: Consuming
-description: |-
-
-  The internets biggest collection of open source dog pictures. Fetching you
-  over 20000 dog images accessible by over 120 breeds. 
+description: >-
+  The internets biggest collection of open source dog pictures. Fetching you over
+  20000 dog images accessible by over 120 breeds.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
