@@ -1,0 +1,23 @@
+aid: dog-api:dog-api
+name: Dog API Rules
+description: >-
+  Operational and design rules governing access and consumption of the Dog API.
+rules:
+  - id: no-authentication
+    name: No Authentication Required
+    description: The Dog API is fully open and requires no API key, token, or authentication.
+  - id: get-only
+    name: Read-Only HTTP GET
+    description: All endpoints are read-only and accept only HTTP GET requests.
+  - id: random-count-limit
+    name: Random Image Count Limit
+    description: When fetching multiple random images, the maximum allowed count is 50.
+  - id: response-envelope
+    name: Standard Response Envelope
+    description: All responses follow a `{message, status}` JSON envelope where `status` is `success` or `error`.
+  - id: open-source-imagery
+    name: Open-Source Imagery
+    description: All image content returned is open source. Attribution to dog.ceo is encouraged.
+  - id: rate-limit-courtesy
+    name: Rate-Limit Courtesy
+    description: No published rate limit exists, but consumers should cache responses and avoid abusive request volumes.

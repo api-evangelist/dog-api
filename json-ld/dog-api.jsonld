@@ -1,0 +1,19 @@
+{
+  "@context": {
+    "schema": "https://schema.org/",
+    "name": "schema:name",
+    "description": "schema:description",
+    "url": "schema:url",
+    "provider": "schema:provider",
+    "category": "schema:category"
+  },
+  "@type": "schema:WebAPI",
+  "name": "Dog API",
+  "description": "Open-source REST API serving over 20,000 dog images across 120+ breeds.",
+  "url": "https://dog.ceo/dog-api/",
+  "category": ["Animals", "Open Data", "Images"],
+  "provider": {
+    "@type": "schema:Organization",
+    "name": "dog.ceo"
+  }
+}

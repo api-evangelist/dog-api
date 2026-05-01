@@ -1,0 +1,18 @@
+aid: dog-api:dog-api
+name: Dog API Vocabulary
+description: >-
+  Domain vocabulary used in the Dog API for breeds, sub-breeds, and image
+  retrieval semantics.
+terms:
+  - term: Breed
+    definition: A primary classification of a dog (e.g., hound, retriever, spaniel).
+  - term: Sub-Breed
+    definition: A finer classification under a breed (e.g., afghan under hound).
+  - term: Image
+    definition: A URL pointing to a JPEG dog photograph hosted by dog.ceo.
+  - term: Random
+    definition: A non-deterministically selected resource from the available pool.
+  - term: Status
+    definition: The outcome of an API call, either `success` or `error`.
+  - term: Message
+    definition: The payload field of every API response, containing the requested data or error context.

@@ -1,0 +1,231 @@
+openapi: 3.1.0
+info:
+  title: Dog API
+  description: >-
+    The Dog API (dog.ceo) is the internet's largest collection of open source
+    dog pictures, exposing over 20,000 dog images accessible by more than 120
+    breeds. The API is free, requires no authentication, and returns JSON.
+  version: 1.0.0
+  contact:
+    name: Dog API
+    url: https://dog.ceo/dog-api/
+  license:
+    name: Open Source
+    url: https://github.com/ElliottLandsborough/dog-ceo-api
+servers:
+  - url: https://dog.ceo/api
+    description: Dog API production server
+tags:
+  - name: Breeds
+    description: List and look up breeds and sub-breeds.
+  - name: Images
+    description: Fetch random or breed-specific dog images.
+paths:
+  /breeds/list/all:
+    get:
+      tags:
+        - Breeds
+      summary: List all breeds
+      description: Returns a list of all breeds with their sub-breeds.
+      operationId: listAllBreeds
+      responses:
+        '200':
+          description: Successful response with master breed list.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BreedListResponse'
+  /breeds/image/random:
+    get:
+      tags:
+        - Images
+      summary: Random image from any breed
+      description: Returns a random dog image from any breed.
+      operationId: randomImage
+      responses:
+        '200':
+          description: A random dog image URL.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageResponse'
+  /breeds/image/random/{count}:
+    get:
+      tags:
+        - Images
+      summary: Multiple random images from any breed
+      description: Returns multiple random dog images. Maximum 50 per request.
+      operationId: randomImages
+      parameters:
+        - name: count
+          in: path
+          required: true
+          description: Number of random images to return (1-50).
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 50
+      responses:
+        '200':
+          description: A list of random dog image URLs.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageListResponse'
+  /breed/{breed}/images:
+    get:
+      tags:
+        - Images
+      summary: All images by breed
+      description: Returns all images for a given breed.
+      operationId: listImagesByBreed
+      parameters:
+        - name: breed
+          in: path
+          required: true
+          description: Breed name (e.g., hound, retriever).
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of image URLs for the breed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageListResponse'
+  /breed/{breed}/images/random:
+    get:
+      tags:
+        - Images
+      summary: Random image by breed
+      description: Returns a single random image for the given breed.
+      operationId: randomImageByBreed
+      parameters:
+        - name: breed
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A random image URL for the breed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageResponse'
+  /breed/{breed}/list:
+    get:
+      tags:
+        - Breeds
+      summary: List sub-breeds
+      description: Returns the list of sub-breeds for the given breed.
+      operationId: listSubBreeds
+      parameters:
+        - name: breed
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of sub-breeds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringListResponse'
+  /breed/{breed}/{subBreed}/images:
+    get:
+      tags:
+        - Images
+      summary: All images by sub-breed
+      description: Returns all images for a given sub-breed.
+      operationId: listImagesBySubBreed
+      parameters:
+        - name: breed
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: subBreed
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of image URLs for the sub-breed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageListResponse'
+  /breed/{breed}/{subBreed}/images/random:
+    get:
+      tags:
+        - Images
+      summary: Random image by sub-breed
+      description: Returns a random image for the given sub-breed.
+      operationId: randomImageBySubBreed
+      parameters:
+        - name: breed
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: subBreed
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A random image URL for the sub-breed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageResponse'
+components:
+  schemas:
+    BreedListResponse:
+      type: object
+      properties:
+        message:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+          description: Map of breed name to a list of sub-breed names.
+        status:
+          type: string
+          example: success
+    ImageResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          format: uri
+          description: URL of the dog image.
+        status:
+          type: string
+          example: success
+    ImageListResponse:
+      type: object
+      properties:
+        message:
+          type: array
+          items:
+            type: string
+            format: uri
+        status:
+          type: string
+          example: success
+    StringListResponse:
+      type: object
+      properties:
+        message:
+          type: array
+          items:
+            type: string
+        status:
+          type: string
+          example: success

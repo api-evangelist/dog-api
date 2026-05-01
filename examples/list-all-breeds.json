@@ -1,0 +1,15 @@
+{
+  "message": {
+    "affenpinscher": [],
+    "african": [],
+    "airedale": [],
+    "akita": [],
+    "appenzeller": [],
+    "australian": ["shepherd"],
+    "bulldog": ["boston", "english", "french"],
+    "hound": ["afghan", "basset", "blood", "english", "ibizan", "plott", "walker"],
+    "retriever": ["chesapeake", "curly", "flatcoated", "golden"],
+    "spaniel": ["blenheim", "brittany", "cocker", "irish", "japanese", "sussex", "welsh"]
+  },
+  "status": "success"
+}

@@ -1,0 +1,46 @@
+aid: dog-api:dog-api
+name: Dog API Capabilities
+description: >-
+  Capabilities exposed by the Dog API (dog.ceo) for retrieving open-source
+  dog images and breed metadata.
+capabilities:
+  - name: List All Breeds
+    description: Retrieve the master list of breeds and their sub-breeds.
+    operationId: listAllBreeds
+    method: GET
+    path: /breeds/list/all
+  - name: Random Image
+    description: Get a random dog image from any breed.
+    operationId: randomImage
+    method: GET
+    path: /breeds/image/random
+  - name: Multiple Random Images
+    description: Get multiple random dog images (up to 50).
+    operationId: randomImages
+    method: GET
+    path: /breeds/image/random/{count}
+  - name: List Images by Breed
+    description: Retrieve all images for a specific breed.
+    operationId: listImagesByBreed
+    method: GET
+    path: /breed/{breed}/images
+  - name: Random Image by Breed
+    description: Get a random image for a specific breed.
+    operationId: randomImageByBreed
+    method: GET
+    path: /breed/{breed}/images/random
+  - name: List Sub-Breeds
+    description: Retrieve all sub-breeds for a given breed.
+    operationId: listSubBreeds
+    method: GET
+    path: /breed/{breed}/list
+  - name: List Images by Sub-Breed
+    description: Retrieve all images for a specific sub-breed.
+    operationId: listImagesBySubBreed
+    method: GET
+    path: /breed/{breed}/{subBreed}/images
+  - name: Random Image by Sub-Breed
+    description: Get a random image for a specific sub-breed.
+    operationId: randomImageBySubBreed
+    method: GET
+    path: /breed/{breed}/{subBreed}/images/random

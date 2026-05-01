@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/json-schema/image-response.json",
+  "title": "ImageResponse",
+  "description": "Response envelope returning a single dog image URL.",
+  "type": "object",
+  "properties": {
+    "message": {
+      "type": "string",
+      "format": "uri"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["success", "error"]
+    }
+  },
+  "required": ["message", "status"]
+}
