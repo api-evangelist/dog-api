@@ -1,0 +1,108 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Dog API — Breeds
+  description: 'Dog API — Breeds. 2 operations. Lead operation: List sub-breeds. Self-contained Naftiko capability covering
+    one Dog Api business surface.'
+  tags:
+  - Dog Api
+  - Breeds
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    DOG_API_API_KEY: DOG_API_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: dog-breeds
+    baseUri: https://dog.ceo/api
+    description: Dog API — Breeds business capability. Self-contained, no shared references.
+    resources:
+    - name: breed-breed-list
+      path: /breed/{breed}/list
+      operations:
+      - name: listsubbreeds
+        method: GET
+        description: List sub-breeds
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: breed
+          in: path
+          type: string
+          required: true
+    - name: breeds-list-all
+      path: /breeds/list/all
+      operations:
+      - name: listallbreeds
+        method: GET
+        description: List all breeds
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: dog-breeds-rest
+    port: 8080
+    description: REST adapter for Dog API — Breeds. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/breed/{breed}/list
+      name: breed-breed-list
+      description: REST surface for breed-breed-list.
+      operations:
+      - method: GET
+        name: listsubbreeds
+        description: List sub-breeds
+        call: dog-breeds.listsubbreeds
+        with:
+          breed: rest.breed
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/breeds/list/all
+      name: breeds-list-all
+      description: REST surface for breeds-list-all.
+      operations:
+      - method: GET
+        name: listallbreeds
+        description: List all breeds
+        call: dog-breeds.listallbreeds
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: dog-breeds-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Dog API — Breeds. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-sub-breeds
+      description: List sub-breeds
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: dog-breeds.listsubbreeds
+      with:
+        breed: tools.breed
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-breeds
+      description: List all breeds
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: dog-breeds.listallbreeds
+      outputParameters:
+      - type: object
+        mapping: $.
