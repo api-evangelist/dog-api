@@ -1,18 +1,262 @@
-aid: dog-api:dog-api
-name: Dog API Vocabulary
-description: >-
-  Domain vocabulary used in the Dog API for breeds, sub-breeds, and image
-  retrieval semantics.
-terms:
-  - term: Breed
-    definition: A primary classification of a dog (e.g., hound, retriever, spaniel).
-  - term: Sub-Breed
-    definition: A finer classification under a breed (e.g., afghan under hound).
-  - term: Image
-    definition: A URL pointing to a JPEG dog photograph hosted by dog.ceo.
-  - term: Random
-    definition: A non-deterministically selected resource from the available pool.
-  - term: Status
-    definition: The outcome of an API call, either `success` or `error`.
-  - term: Message
-    definition: The payload field of every API response, containing the requested data or error context.
+vocabulary: '1.0.0'
+
+info:
+  provider: Dog API
+  description: >-
+    Unified vocabulary for the Dog API (dog.ceo) covering the operational
+    dimension (paths, operations, parameters, schemas, enums) drawn from the
+    OpenAPI specification and the capability dimension (workflows, REST/MCP
+    adapters, personas) drawn from the Naftiko capability files. Cross-references
+    show how operational resources connect to the customer-facing dog-image
+    workflows.
+  created: '2026-05-30'
+  modified: '2026-05-30'
+
+# ─── OPERATIONAL DIMENSION (from OpenAPI dog-api.yml) ────────────────────
+operational:
+  apis:
+    - name: Dog API
+      namespace: dog-api
+      version: 1.1.0
+      baseUrl: https://dog.ceo/api
+      status: active
+      license: MIT
+      authentication: none
+
+  resources:
+    - name: breeds
+      api: dog-api
+      domain: Breeds
+      paths:
+        - /breeds/list/all
+        - /breeds/list/all/random
+        - /breeds/list/all/random/{amount}
+        - /breeds/list
+        - /breeds/list/random
+        - /breeds/list/random/{amount}
+        - /breed/{breed}/list
+        - /breed/{breed}/list/random
+        - /breed/{breed}/list/random/{amount}
+      actions:
+        - list
+        - random
+    - name: images
+      api: dog-api
+      domain: Images
+      paths:
+        - /breeds/image/random
+        - /breeds/image/random/{amount}
+        - /breeds/image/random/{amount}/alt
+        - /breed/{breed}/images
+        - /breed/{breed}/images/random
+        - /breed/{breed}/images/random/{amount}
+        - /breed/{breed}/images/alt
+        - /breed/{breed}/images/random/{amount}/alt
+        - /breed/{breed}/{subBreed}/images
+        - /breed/{breed}/{subBreed}/images/random
+        - /breed/{breed}/{subBreed}/images/random/{amount}
+        - /breed/{breed}/{subBreed}/images/alt
+        - /breed/{breed}/{subBreed}/images/random/{amount}/alt
+      actions:
+        - list
+        - random
+    - name: info
+      api: dog-api
+      domain: Info
+      paths:
+        - /breed/{breed}
+        - /breed/{breed}/{subBreed}
+      actions:
+        - get
+
+  actions:
+    - name: list
+      method: GET
+      pattern: read
+      description: Enumerate all members of a collection (breeds, sub-breeds, or images).
+    - name: random
+      method: GET
+      pattern: read
+      description: Return one or more randomly selected items from a collection.
+    - name: get
+      method: GET
+      pattern: read
+      description: Retrieve a single item by identifier (e.g., breed info lookup).
+
+  schemas:
+    core:
+      - name: BreedListResponse
+        properties: [message, status]
+        notes: Envelope wrapping a map of breed -> sub-breed list.
+      - name: ImageResponse
+        properties: [message, status]
+        notes: Envelope wrapping a single image URL.
+      - name: ImageListResponse
+        properties: [message, status]
+        notes: Envelope wrapping a list of image URLs.
+      - name: StringResponse
+        properties: [message, status]
+        notes: Envelope wrapping a single string (breed name or info text).
+      - name: StringListResponse
+        properties: [message, status]
+        notes: Envelope wrapping a list of strings (breed/sub-breed names).
+    accessibility:
+      - name: AltImage
+        properties: [url, altText]
+        notes: Image URL paired with descriptive alt text for accessibility.
+      - name: AltImageListResponse
+        properties: [message, status]
+        notes: Envelope wrapping a list of AltImage objects.
+    errors:
+      - name: ErrorResponse
+        properties: [status, message, code]
+        notes: Returned when a breed or sub-breed cannot be resolved.
+
+  parameters:
+    pathIdentifiers:
+      - name: breed
+        type: string
+        description: Master breed name (e.g., hound, retriever).
+      - name: subBreed
+        type: string
+        description: Sub-breed name (e.g., afghan under hound).
+    pagination:
+      - name: amount
+        type: integer
+        description: Number of items to return (random images, breeds, sub-breeds).
+
+  enums:
+    status:
+      - success
+      - error
+
+  authentication:
+    schemes: []
+    notes: The Dog API is fully open. No API key, token, or HTTP authentication is required.
+
+# ─── CAPABILITY DIMENSION (from Naftiko capability files) ───────────────
+capability:
+  workflows:
+    - name: Dog API — Breeds
+      file: capabilities/dog-api-breeds.yaml
+      description: Enumerate and randomly sample the master breed list, sub-breeds, and top-level breeds.
+      apis: [dog-api]
+      toolCount: 9
+      domains: [Breeds]
+      personas: [petContentDeveloper, dataExplorer]
+    - name: Dog API — Images
+      file: capabilities/dog-api-images.yaml
+      description: Fetch dog photos by breed, sub-breed, or at random, with optional alt-text for accessibility.
+      apis: [dog-api]
+      toolCount: 13
+      domains: [Images]
+      personas: [petContentDeveloper, accessibilityEngineer, mlDataCollector]
+    - name: Dog API — Info
+      file: capabilities/dog-api-info.yaml
+      description: Look up free-text descriptive information for a breed or sub-breed where the upstream provides it.
+      apis: [dog-api]
+      toolCount: 2
+      domains: [Info]
+      personas: [petContentDeveloper]
+
+  personas:
+    - id: petContentDeveloper
+      name: Pet Content Developer
+      description: Builds consumer-facing dog photo features, widgets, or example apps.
+      workflows: [Dog API — Breeds, Dog API — Images, Dog API — Info]
+    - id: accessibilityEngineer
+      name: Accessibility Engineer
+      description: Needs image URLs paired with descriptive alt text for screen-reader-friendly UIs.
+      workflows: [Dog API — Images]
+    - id: mlDataCollector
+      name: ML Data Collector
+      description: Pulls breed-tagged dog imagery as a public dataset for vision model training.
+      workflows: [Dog API — Images]
+    - id: dataExplorer
+      name: Data Explorer
+      description: Browses the master breed taxonomy and sub-breed structure as a reference dataset.
+      workflows: [Dog API — Breeds]
+
+  domains:
+    - name: Breeds
+      resources: [breeds]
+      workflows: [Dog API — Breeds]
+    - name: Images
+      resources: [images]
+      workflows: [Dog API — Images]
+    - name: Info
+      resources: [info]
+      workflows: [Dog API — Info]
+
+  namespaces:
+    - kind: consumed
+      namespace: dog-api-breeds
+      baseUri: https://dog.ceo/api
+    - kind: consumed
+      namespace: dog-api-images
+      baseUri: https://dog.ceo/api
+    - kind: consumed
+      namespace: dog-api-info
+      baseUri: https://dog.ceo/api
+    - kind: rest-exposed
+      namespace: dog-api-breeds-rest
+      port: 8080
+    - kind: rest-exposed
+      namespace: dog-api-images-rest
+      port: 8080
+    - kind: rest-exposed
+      namespace: dog-api-info-rest
+      port: 8080
+    - kind: mcp-exposed
+      namespace: dog-api-breeds-mcp
+      port: 9090
+    - kind: mcp-exposed
+      namespace: dog-api-images-mcp
+      port: 9090
+    - kind: mcp-exposed
+      namespace: dog-api-info-mcp
+      port: 9090
+
+  binds: []
+
+# ─── CROSS-REFERENCE ────────────────────────────────────────────────────
+crossReference:
+  - resource: breeds
+    api: dog-api
+    operations:
+      - listAllBreeds
+      - randomBreedEntry
+      - randomBreedEntries
+      - listTopLevelBreeds
+      - randomTopLevelBreed
+      - randomTopLevelBreeds
+      - listSubBreeds
+      - randomSubBreed
+      - randomSubBreeds
+    workflows: [Dog API — Breeds]
+    personas: [petContentDeveloper, dataExplorer]
+  - resource: images
+    api: dog-api
+    operations:
+      - randomImage
+      - randomImages
+      - randomImagesWithAlt
+      - listImagesByBreed
+      - randomImageByBreed
+      - randomImagesByBreed
+      - listImagesByBreedWithAlt
+      - randomImagesByBreedWithAlt
+      - listImagesBySubBreed
+      - randomImageBySubBreed
+      - randomImagesBySubBreed
+      - listImagesBySubBreedWithAlt
+      - randomImagesBySubBreedWithAlt
+    workflows: [Dog API — Images]
+    personas: [petContentDeveloper, accessibilityEngineer, mlDataCollector]
+  - resource: info
+    api: dog-api
+    operations:
+      - getBreedInfo
+      - getSubBreedInfo
+    workflows: [Dog API — Info]
+    personas: [petContentDeveloper]

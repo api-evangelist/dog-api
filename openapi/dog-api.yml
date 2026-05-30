@@ -1,32 +1,36 @@
 openapi: 3.1.0
 info:
   title: Dog API
-  description: >-
-    The Dog API (dog.ceo) is the internet's largest collection of open source
-    dog pictures, exposing over 20,000 dog images accessible by more than 120
-    breeds. The API is free, requires no authentication, and returns JSON.
-  version: 1.0.0
+  description: The Dog API (dog.ceo) is the internet's largest collection of open-source dog pictures, exposing over 20,000 dog images accessible by more than 120 breeds. The API is free, requires no authentication,
+    and returns JSON. An optional `alt` variant returns image URLs paired with descriptive alt text for accessibility. The canonical implementation is the open-source PHP Symfony project at github.com/ElliottLandsborough/dog-ceo-api,
+    licensed MIT.
+  version: 1.1.0
   contact:
     name: Dog API
     url: https://dog.ceo/dog-api/
   license:
-    name: Open Source
-    url: https://github.com/ElliottLandsborough/dog-ceo-api
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  x-generated-from: documentation+source
+  x-source-url: https://github.com/ElliottLandsborough/dog-ceo-api/blob/main/src/Controller/MainController.php
+  x-last-validated: '2026-05-30'
 servers:
-  - url: https://dog.ceo/api
-    description: Dog API production server
+- url: https://dog.ceo/api
+  description: Dog API production server
 tags:
-  - name: Breeds
-    description: List and look up breeds and sub-breeds.
-  - name: Images
-    description: Fetch random or breed-specific dog images.
+- name: Breeds
+  description: List and look up master breeds and their sub-breeds.
+- name: Images
+  description: Fetch random or breed-specific dog images (with optional alt text).
+- name: Info
+  description: Look up free-text breed information where available.
 paths:
   /breeds/list/all:
     get:
       tags:
-        - Breeds
-      summary: List all breeds
-      description: Returns a list of all breeds with their sub-breeds.
+      - Breeds
+      summary: Dog API List All Breeds
+      description: Returns the complete master breed list with each breed's sub-breeds (if any).
       operationId: listAllBreeds
       responses:
         '200':
@@ -35,197 +39,1108 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BreedListResponse'
-  /breeds/image/random:
+              examples:
+                ListAllBreeds200Example:
+                  summary: Default listAllBreeds 200 response
+                  x-microcks-default: true
+                  value:
+                    message:
+                      hound:
+                      - afghan
+                      - basset
+                      - blood
+                      - english
+                      retriever:
+                      - chesapeake
+                      - curly
+                      - flatcoated
+                      - golden
+                      spaniel:
+                      - blenheim
+                      - brittany
+                      - cocker
+                      - irish
+                    status: success
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /breeds/list/all/random:
     get:
       tags:
-        - Images
-      summary: Random image from any breed
-      description: Returns a random dog image from any breed.
-      operationId: randomImage
+      - Breeds
+      summary: Dog API Random Breed Entry
+      description: Returns a single randomly selected entry from the master breed list (one breed mapped to its sub-breeds).
+      operationId: randomBreedEntry
       responses:
         '200':
-          description: A random dog image URL.
+          description: A single random breed and its sub-breeds.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ImageResponse'
-  /breeds/image/random/{count}:
+                $ref: '#/components/schemas/BreedListResponse'
+              examples:
+                RandomBreedEntry200Example:
+                  summary: Default randomBreedEntry 200 response
+                  x-microcks-default: true
+                  value:
+                    message:
+                      hound:
+                      - afghan
+                      - basset
+                      - blood
+                      - english
+                      retriever:
+                      - chesapeake
+                      - curly
+                      - flatcoated
+                      - golden
+                      spaniel:
+                      - blenheim
+                      - brittany
+                      - cocker
+                      - irish
+                    status: success
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /breeds/list/all/random/{amount}:
     get:
       tags:
-        - Images
-      summary: Multiple random images from any breed
-      description: Returns multiple random dog images. Maximum 50 per request.
-      operationId: randomImages
+      - Breeds
+      summary: Dog API Multiple Random Breed Entries
+      description: Returns multiple randomly selected entries from the master breed list.
+      operationId: randomBreedEntries
       parameters:
-        - name: count
-          in: path
-          required: true
-          description: Number of random images to return (1-50).
-          schema:
-            type: integer
-            minimum: 1
-            maximum: 50
+      - name: amount
+        in: path
+        required: true
+        description: Number of random breed entries to return.
+        schema:
+          type: integer
+          minimum: 1
+        example: 3
       responses:
         '200':
-          description: A list of random dog image URLs.
+          description: A map of random breeds to their sub-breeds.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ImageListResponse'
-  /breed/{breed}/images:
+                $ref: '#/components/schemas/BreedListResponse'
+              examples:
+                RandomBreedEntries200Example:
+                  summary: Default randomBreedEntries 200 response
+                  x-microcks-default: true
+                  value:
+                    message:
+                      hound:
+                      - afghan
+                      - basset
+                      - blood
+                      - english
+                      retriever:
+                      - chesapeake
+                      - curly
+                      - flatcoated
+                      - golden
+                      spaniel:
+                      - blenheim
+                      - brittany
+                      - cocker
+                      - irish
+                    status: success
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /breeds/list:
     get:
       tags:
-        - Images
-      summary: All images by breed
-      description: Returns all images for a given breed.
-      operationId: listImagesByBreed
-      parameters:
-        - name: breed
-          in: path
-          required: true
-          description: Breed name (e.g., hound, retriever).
-          schema:
-            type: string
+      - Breeds
+      summary: Dog API List Top-Level Breeds
+      description: Returns the list of all top-level (master) breed names without sub-breeds.
+      operationId: listTopLevelBreeds
       responses:
         '200':
-          description: A list of image URLs for the breed.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ImageListResponse'
-  /breed/{breed}/images/random:
-    get:
-      tags:
-        - Images
-      summary: Random image by breed
-      description: Returns a single random image for the given breed.
-      operationId: randomImageByBreed
-      parameters:
-        - name: breed
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: A random image URL for the breed.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ImageResponse'
-  /breed/{breed}/list:
-    get:
-      tags:
-        - Breeds
-      summary: List sub-breeds
-      description: Returns the list of sub-breeds for the given breed.
-      operationId: listSubBreeds
-      parameters:
-        - name: breed
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: A list of sub-breeds.
+          description: An array of top-level breed names.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/StringListResponse'
-  /breed/{breed}/{subBreed}/images:
+              examples:
+                ListTopLevelBreeds200Example:
+                  summary: Default listTopLevelBreeds 200 response
+                  x-microcks-default: true
+                  value:
+                    message:
+                    - afghan
+                    - basset
+                    - blood
+                    - english
+                    status: success
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /breeds/list/random:
     get:
       tags:
-        - Images
-      summary: All images by sub-breed
-      description: Returns all images for a given sub-breed.
-      operationId: listImagesBySubBreed
-      parameters:
-        - name: breed
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: subBreed
-          in: path
-          required: true
-          schema:
-            type: string
+      - Breeds
+      summary: Dog API Random Top-Level Breed
+      description: Returns a single randomly selected top-level breed name.
+      operationId: randomTopLevelBreed
       responses:
         '200':
-          description: A list of image URLs for the sub-breed.
+          description: A single random top-level breed name.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringResponse'
+              examples:
+                RandomTopLevelBreed200Example:
+                  summary: Default randomTopLevelBreed 200 response
+                  x-microcks-default: true
+                  value:
+                    message: hound
+                    status: success
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /breeds/list/random/{amount}:
+    get:
+      tags:
+      - Breeds
+      summary: Dog API Multiple Random Top-Level Breeds
+      description: Returns multiple randomly selected top-level breed names.
+      operationId: randomTopLevelBreeds
+      parameters:
+      - name: amount
+        in: path
+        required: true
+        description: Number of random top-level breed names to return.
+        schema:
+          type: integer
+          minimum: 1
+        example: 3
+      responses:
+        '200':
+          description: An array of random top-level breed names.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringListResponse'
+              examples:
+                RandomTopLevelBreeds200Example:
+                  summary: Default randomTopLevelBreeds 200 response
+                  x-microcks-default: true
+                  value:
+                    message:
+                    - afghan
+                    - basset
+                    - blood
+                    - english
+                    status: success
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /breed/{breed}/list:
+    get:
+      tags:
+      - Breeds
+      summary: Dog API List Sub-Breeds
+      description: Returns the list of sub-breeds for the given master breed.
+      operationId: listSubBreeds
+      parameters:
+      - name: breed
+        in: path
+        required: true
+        description: Master breed name (e.g., hound, retriever, spaniel).
+        schema:
+          type: string
+        example: hound
+      responses:
+        '200':
+          description: An array of sub-breed names.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringListResponse'
+              examples:
+                ListSubBreeds200Example:
+                  summary: Default listSubBreeds 200 response
+                  x-microcks-default: true
+                  value:
+                    message:
+                    - afghan
+                    - basset
+                    - blood
+                    - english
+                    status: success
+        '404':
+          description: Breed not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                ListSubBreeds404Example:
+                  summary: Default listSubBreeds 404 response
+                  x-microcks-default: true
+                  value:
+                    status: error
+                    message: Breed not found (main breed does not exist)
+                    code: 404
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /breed/{breed}/list/random:
+    get:
+      tags:
+      - Breeds
+      summary: Dog API Random Sub-Breed
+      description: Returns a single random sub-breed for the given master breed.
+      operationId: randomSubBreed
+      parameters:
+      - name: breed
+        in: path
+        required: true
+        description: Master breed name.
+        schema:
+          type: string
+        example: hound
+      responses:
+        '200':
+          description: A single random sub-breed name.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringResponse'
+              examples:
+                RandomSubBreed200Example:
+                  summary: Default randomSubBreed 200 response
+                  x-microcks-default: true
+                  value:
+                    message: hound
+                    status: success
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /breed/{breed}/list/random/{amount}:
+    get:
+      tags:
+      - Breeds
+      summary: Dog API Multiple Random Sub-Breeds
+      description: Returns multiple random sub-breeds for the given master breed.
+      operationId: randomSubBreeds
+      parameters:
+      - name: breed
+        in: path
+        required: true
+        description: Master breed name.
+        schema:
+          type: string
+        example: hound
+      - name: amount
+        in: path
+        required: true
+        description: Number of random sub-breeds to return.
+        schema:
+          type: integer
+          minimum: 1
+        example: 3
+      responses:
+        '200':
+          description: An array of random sub-breed names.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringListResponse'
+              examples:
+                RandomSubBreeds200Example:
+                  summary: Default randomSubBreeds 200 response
+                  x-microcks-default: true
+                  value:
+                    message:
+                    - afghan
+                    - basset
+                    - blood
+                    - english
+                    status: success
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /breed/{breed}/images:
+    get:
+      tags:
+      - Images
+      summary: Dog API List Images by Breed
+      description: Returns all image URLs for a given master breed.
+      operationId: listImagesByBreed
+      parameters:
+      - name: breed
+        in: path
+        required: true
+        description: Master breed name.
+        schema:
+          type: string
+        example: hound
+      responses:
+        '200':
+          description: An array of image URLs for the breed.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ImageListResponse'
-  /breed/{breed}/{subBreed}/images/random:
+              examples:
+                ListImagesByBreed200Example:
+                  summary: Default listImagesByBreed 200 response
+                  x-microcks-default: true
+                  value:
+                    message:
+                    - https://images.dog.ceo/breeds/hound-afghan/n02088094_1003.jpg
+                    - https://images.dog.ceo/breeds/hound-afghan/n02088094_1023.jpg
+                    - https://images.dog.ceo/breeds/hound-afghan/n02088094_10263.jpg
+                    status: success
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /breed/{breed}/images/random:
     get:
       tags:
-        - Images
-      summary: Random image by sub-breed
-      description: Returns a random image for the given sub-breed.
-      operationId: randomImageBySubBreed
+      - Images
+      summary: Dog API Random Image by Breed
+      description: Returns a single random image URL for the given master breed.
+      operationId: randomImageByBreed
       parameters:
-        - name: breed
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: subBreed
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: breed
+        in: path
+        required: true
+        description: Master breed name.
+        schema:
+          type: string
+        example: hound
       responses:
         '200':
-          description: A random image URL for the sub-breed.
+          description: A single random image URL for the breed.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ImageResponse'
+              examples:
+                RandomImageByBreed200Example:
+                  summary: Default randomImageByBreed 200 response
+                  x-microcks-default: true
+                  value:
+                    message: https://images.dog.ceo/breeds/hound-afghan/n02088094_1003.jpg
+                    status: success
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /breed/{breed}/images/random/{amount}:
+    get:
+      tags:
+      - Images
+      summary: Dog API Multiple Random Images by Breed
+      description: Returns multiple random image URLs for the given master breed.
+      operationId: randomImagesByBreed
+      parameters:
+      - name: breed
+        in: path
+        required: true
+        description: Master breed name.
+        schema:
+          type: string
+        example: hound
+      - name: amount
+        in: path
+        required: true
+        description: Number of random images to return.
+        schema:
+          type: integer
+          minimum: 1
+        example: 3
+      responses:
+        '200':
+          description: An array of random image URLs for the breed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageListResponse'
+              examples:
+                RandomImagesByBreed200Example:
+                  summary: Default randomImagesByBreed 200 response
+                  x-microcks-default: true
+                  value:
+                    message:
+                    - https://images.dog.ceo/breeds/hound-afghan/n02088094_1003.jpg
+                    - https://images.dog.ceo/breeds/hound-afghan/n02088094_1023.jpg
+                    - https://images.dog.ceo/breeds/hound-afghan/n02088094_10263.jpg
+                    status: success
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /breed/{breed}/{subBreed}/images:
+    get:
+      tags:
+      - Images
+      summary: Dog API List Images by Sub-Breed
+      description: Returns all image URLs for a given sub-breed.
+      operationId: listImagesBySubBreed
+      parameters:
+      - name: breed
+        in: path
+        required: true
+        description: Master breed name.
+        schema:
+          type: string
+        example: hound
+      - name: subBreed
+        in: path
+        required: true
+        description: Sub-breed name.
+        schema:
+          type: string
+        example: afghan
+      responses:
+        '200':
+          description: An array of image URLs for the sub-breed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageListResponse'
+              examples:
+                ListImagesBySubBreed200Example:
+                  summary: Default listImagesBySubBreed 200 response
+                  x-microcks-default: true
+                  value:
+                    message:
+                    - https://images.dog.ceo/breeds/hound-afghan/n02088094_1003.jpg
+                    - https://images.dog.ceo/breeds/hound-afghan/n02088094_1023.jpg
+                    - https://images.dog.ceo/breeds/hound-afghan/n02088094_10263.jpg
+                    status: success
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /breed/{breed}/{subBreed}/images/random:
+    get:
+      tags:
+      - Images
+      summary: Dog API Random Image by Sub-Breed
+      description: Returns a single random image URL for the given sub-breed.
+      operationId: randomImageBySubBreed
+      parameters:
+      - name: breed
+        in: path
+        required: true
+        description: Master breed name.
+        schema:
+          type: string
+        example: hound
+      - name: subBreed
+        in: path
+        required: true
+        description: Sub-breed name.
+        schema:
+          type: string
+        example: afghan
+      responses:
+        '200':
+          description: A single random image URL for the sub-breed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageResponse'
+              examples:
+                RandomImageBySubBreed200Example:
+                  summary: Default randomImageBySubBreed 200 response
+                  x-microcks-default: true
+                  value:
+                    message: https://images.dog.ceo/breeds/hound-afghan/n02088094_1003.jpg
+                    status: success
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /breed/{breed}/{subBreed}/images/random/{amount}:
+    get:
+      tags:
+      - Images
+      summary: Dog API Multiple Random Images by Sub-Breed
+      description: Returns multiple random image URLs for the given sub-breed.
+      operationId: randomImagesBySubBreed
+      parameters:
+      - name: breed
+        in: path
+        required: true
+        description: Master breed name.
+        schema:
+          type: string
+        example: hound
+      - name: subBreed
+        in: path
+        required: true
+        description: Sub-breed name.
+        schema:
+          type: string
+        example: afghan
+      - name: amount
+        in: path
+        required: true
+        description: Number of random images to return.
+        schema:
+          type: integer
+          minimum: 1
+        example: 3
+      responses:
+        '200':
+          description: An array of random image URLs for the sub-breed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageListResponse'
+              examples:
+                RandomImagesBySubBreed200Example:
+                  summary: Default randomImagesBySubBreed 200 response
+                  x-microcks-default: true
+                  value:
+                    message:
+                    - https://images.dog.ceo/breeds/hound-afghan/n02088094_1003.jpg
+                    - https://images.dog.ceo/breeds/hound-afghan/n02088094_1023.jpg
+                    - https://images.dog.ceo/breeds/hound-afghan/n02088094_10263.jpg
+                    status: success
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /breeds/image/random:
+    get:
+      tags:
+      - Images
+      summary: Dog API Random Image From Any Breed
+      description: Returns a random dog image URL from any breed.
+      operationId: randomImage
+      responses:
+        '200':
+          description: A single random image URL.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageResponse'
+              examples:
+                RandomImage200Example:
+                  summary: Default randomImage 200 response
+                  x-microcks-default: true
+                  value:
+                    message: https://images.dog.ceo/breeds/hound-afghan/n02088094_1003.jpg
+                    status: success
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /breeds/image/random/{amount}:
+    get:
+      tags:
+      - Images
+      summary: Dog API Multiple Random Images From Any Breed
+      description: Returns multiple random dog image URLs from any breed.
+      operationId: randomImages
+      parameters:
+      - name: amount
+        in: path
+        required: true
+        description: Number of random images to return.
+        schema:
+          type: integer
+          minimum: 1
+        example: 3
+      responses:
+        '200':
+          description: An array of random image URLs.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageListResponse'
+              examples:
+                RandomImages200Example:
+                  summary: Default randomImages 200 response
+                  x-microcks-default: true
+                  value:
+                    message:
+                    - https://images.dog.ceo/breeds/hound-afghan/n02088094_1003.jpg
+                    - https://images.dog.ceo/breeds/hound-afghan/n02088094_1023.jpg
+                    - https://images.dog.ceo/breeds/hound-afghan/n02088094_10263.jpg
+                    status: success
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /breeds/image/random/{amount}/alt:
+    get:
+      tags:
+      - Images
+      summary: Dog API Multiple Random Images From Any Breed With Alt Text
+      description: Returns multiple random images from any breed paired with descriptive alt text.
+      operationId: randomImagesWithAlt
+      parameters:
+      - name: amount
+        in: path
+        required: true
+        description: Number of random images to return.
+        schema:
+          type: integer
+          minimum: 1
+        example: 3
+      responses:
+        '200':
+          description: An array of image objects each containing a URL and alt text.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AltImageListResponse'
+              examples:
+                RandomImagesWithAlt200Example:
+                  summary: Default randomImagesWithAlt 200 response
+                  x-microcks-default: true
+                  value:
+                    message:
+                    - url: https://images.dog.ceo/breeds/hound-basset/n02088238_2217.jpg
+                      altText: Basset hound dog
+                    - url: https://images.dog.ceo/breeds/hound-blood/n02088466_6712.jpg
+                      altText: Blood hound dog
+                    status: success
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /breed/{breed}/images/alt:
+    get:
+      tags:
+      - Images
+      summary: Dog API List Images by Breed With Alt Text
+      description: Returns all images for the given master breed paired with descriptive alt text.
+      operationId: listImagesByBreedWithAlt
+      parameters:
+      - name: breed
+        in: path
+        required: true
+        description: Master breed name.
+        schema:
+          type: string
+        example: hound
+      responses:
+        '200':
+          description: An array of image objects each containing a URL and alt text.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AltImageListResponse'
+              examples:
+                ListImagesByBreedWithAlt200Example:
+                  summary: Default listImagesByBreedWithAlt 200 response
+                  x-microcks-default: true
+                  value:
+                    message:
+                    - url: https://images.dog.ceo/breeds/hound-basset/n02088238_2217.jpg
+                      altText: Basset hound dog
+                    - url: https://images.dog.ceo/breeds/hound-blood/n02088466_6712.jpg
+                      altText: Blood hound dog
+                    status: success
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /breed/{breed}/images/random/{amount}/alt:
+    get:
+      tags:
+      - Images
+      summary: Dog API Multiple Random Images by Breed With Alt Text
+      description: Returns multiple random images for the given master breed paired with descriptive alt text.
+      operationId: randomImagesByBreedWithAlt
+      parameters:
+      - name: breed
+        in: path
+        required: true
+        description: Master breed name.
+        schema:
+          type: string
+        example: hound
+      - name: amount
+        in: path
+        required: true
+        description: Number of random images to return.
+        schema:
+          type: integer
+          minimum: 1
+        example: 3
+      responses:
+        '200':
+          description: An array of image objects each containing a URL and alt text.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AltImageListResponse'
+              examples:
+                RandomImagesByBreedWithAlt200Example:
+                  summary: Default randomImagesByBreedWithAlt 200 response
+                  x-microcks-default: true
+                  value:
+                    message:
+                    - url: https://images.dog.ceo/breeds/hound-basset/n02088238_2217.jpg
+                      altText: Basset hound dog
+                    - url: https://images.dog.ceo/breeds/hound-blood/n02088466_6712.jpg
+                      altText: Blood hound dog
+                    status: success
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /breed/{breed}/{subBreed}/images/alt:
+    get:
+      tags:
+      - Images
+      summary: Dog API List Images by Sub-Breed With Alt Text
+      description: Returns all images for the given sub-breed paired with descriptive alt text.
+      operationId: listImagesBySubBreedWithAlt
+      parameters:
+      - name: breed
+        in: path
+        required: true
+        description: Master breed name.
+        schema:
+          type: string
+        example: hound
+      - name: subBreed
+        in: path
+        required: true
+        description: Sub-breed name.
+        schema:
+          type: string
+        example: afghan
+      responses:
+        '200':
+          description: An array of image objects each containing a URL and alt text.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AltImageListResponse'
+              examples:
+                ListImagesBySubBreedWithAlt200Example:
+                  summary: Default listImagesBySubBreedWithAlt 200 response
+                  x-microcks-default: true
+                  value:
+                    message:
+                    - url: https://images.dog.ceo/breeds/hound-basset/n02088238_2217.jpg
+                      altText: Basset hound dog
+                    - url: https://images.dog.ceo/breeds/hound-blood/n02088466_6712.jpg
+                      altText: Blood hound dog
+                    status: success
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /breed/{breed}/{subBreed}/images/random/{amount}/alt:
+    get:
+      tags:
+      - Images
+      summary: Dog API Multiple Random Images by Sub-Breed With Alt Text
+      description: Returns multiple random images for the given sub-breed paired with descriptive alt text.
+      operationId: randomImagesBySubBreedWithAlt
+      parameters:
+      - name: breed
+        in: path
+        required: true
+        description: Master breed name.
+        schema:
+          type: string
+        example: hound
+      - name: subBreed
+        in: path
+        required: true
+        description: Sub-breed name.
+        schema:
+          type: string
+        example: afghan
+      - name: amount
+        in: path
+        required: true
+        description: Number of random images to return.
+        schema:
+          type: integer
+          minimum: 1
+        example: 3
+      responses:
+        '200':
+          description: An array of image objects each containing a URL and alt text.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AltImageListResponse'
+              examples:
+                RandomImagesBySubBreedWithAlt200Example:
+                  summary: Default randomImagesBySubBreedWithAlt 200 response
+                  x-microcks-default: true
+                  value:
+                    message:
+                    - url: https://images.dog.ceo/breeds/hound-basset/n02088238_2217.jpg
+                      altText: Basset hound dog
+                    - url: https://images.dog.ceo/breeds/hound-blood/n02088466_6712.jpg
+                      altText: Blood hound dog
+                    status: success
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /breed/{breed}:
+    get:
+      tags:
+      - Info
+      summary: Dog API Get Breed Info
+      description: Returns free-text descriptive information about the given master breed when available.
+      operationId: getBreedInfo
+      parameters:
+      - name: breed
+        in: path
+        required: true
+        description: Master breed name.
+        schema:
+          type: string
+        example: hound
+      responses:
+        '200':
+          description: Free-text breed information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringResponse'
+              examples:
+                GetBreedInfo200Example:
+                  summary: Default getBreedInfo 200 response
+                  x-microcks-default: true
+                  value:
+                    message: hound
+                    status: success
+        '404':
+          description: No info file exists for this breed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                GetBreedInfo404Example:
+                  summary: Default getBreedInfo 404 response
+                  x-microcks-default: true
+                  value:
+                    status: error
+                    message: Breed not found (main breed does not exist)
+                    code: 404
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /breed/{breed}/{subBreed}:
+    get:
+      tags:
+      - Info
+      summary: Dog API Get Sub-Breed Info
+      description: Returns free-text descriptive information about the given sub-breed when available.
+      operationId: getSubBreedInfo
+      parameters:
+      - name: breed
+        in: path
+        required: true
+        description: Master breed name.
+        schema:
+          type: string
+        example: hound
+      - name: subBreed
+        in: path
+        required: true
+        description: Sub-breed name.
+        schema:
+          type: string
+        example: afghan
+      responses:
+        '200':
+          description: Free-text sub-breed information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringResponse'
+              examples:
+                GetSubBreedInfo200Example:
+                  summary: Default getSubBreedInfo 200 response
+                  x-microcks-default: true
+                  value:
+                    message: hound
+                    status: success
+        '404':
+          description: No info file exists for this sub-breed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                GetSubBreedInfo404Example:
+                  summary: Default getSubBreedInfo 404 response
+                  x-microcks-default: true
+                  value:
+                    status: error
+                    message: Breed not found (main breed does not exist)
+                    code: 404
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   schemas:
     BreedListResponse:
       type: object
+      description: Response envelope returning a map of master breed names to their sub-breed lists.
+      required:
+      - message
+      - status
       properties:
         message:
           type: object
+          description: Map of breed name to a list of sub-breed names.
           additionalProperties:
             type: array
             items:
               type: string
-          description: Map of breed name to a list of sub-breed names.
+              example: afghan
+          example:
+            hound:
+            - afghan
+            - basset
+            - blood
+            retriever:
+            - chesapeake
+            - golden
         status:
           type: string
+          description: Outcome marker; "success" when the request succeeded.
+          enum:
+          - success
+          - error
           example: success
     ImageResponse:
       type: object
+      description: Response envelope returning a single dog image URL.
+      required:
+      - message
+      - status
       properties:
         message:
           type: string
           format: uri
           description: URL of the dog image.
+          example: https://images.dog.ceo/breeds/hound-afghan/n02088094_1003.jpg
         status:
           type: string
+          description: Outcome marker; "success" when the request succeeded.
+          enum:
+          - success
+          - error
           example: success
     ImageListResponse:
       type: object
+      description: Response envelope returning a list of dog image URLs.
+      required:
+      - message
+      - status
       properties:
         message:
           type: array
+          description: List of dog image URLs.
           items:
             type: string
             format: uri
+            example: https://images.dog.ceo/breeds/hound-afghan/n02088094_1003.jpg
         status:
           type: string
+          description: Outcome marker; "success" when the request succeeded.
+          enum:
+          - success
+          - error
+          example: success
+    StringResponse:
+      type: object
+      description: Response envelope returning a single string value (a single breed name or free-text info).
+      required:
+      - message
+      - status
+      properties:
+        message:
+          type: string
+          description: The returned string value.
+          example: hound
+        status:
+          type: string
+          description: Outcome marker; "success" when the request succeeded.
+          enum:
+          - success
+          - error
           example: success
     StringListResponse:
       type: object
+      description: Response envelope returning a list of strings (e.g., breed or sub-breed names).
+      required:
+      - message
+      - status
       properties:
         message:
           type: array
+          description: List of string values.
           items:
             type: string
+            example: afghan
         status:
           type: string
+          description: Outcome marker; "success" when the request succeeded.
+          enum:
+          - success
+          - error
           example: success
+    AltImage:
+      type: object
+      description: A dog image URL paired with descriptive alt text suitable for accessibility.
+      required:
+      - url
+      - altText
+      properties:
+        url:
+          type: string
+          format: uri
+          description: URL of the dog image.
+          example: https://images.dog.ceo/breeds/hound-basset/n02088238_2217.jpg
+        altText:
+          type: string
+          description: Human-readable alt text describing the image (typically "{Sub-breed} {breed} dog").
+          example: Basset hound dog
+    AltImageListResponse:
+      type: object
+      description: Response envelope returning a list of image objects each containing a URL and alt text.
+      required:
+      - message
+      - status
+      properties:
+        message:
+          type: array
+          description: List of image objects with URL and alt text.
+          items:
+            $ref: '#/components/schemas/AltImage'
+        status:
+          type: string
+          description: Outcome marker; "success" when the request succeeded.
+          enum:
+          - success
+          - error
+          example: success
+    ErrorResponse:
+      type: object
+      description: Response envelope returned when an API request fails (e.g., unknown breed).
+      required:
+      - status
+      - message
+      - code
+      properties:
+        status:
+          type: string
+          description: Outcome marker; "error" when the request failed.
+          enum:
+          - error
+          example: error
+        message:
+          type: string
+          description: Human-readable error description.
+          example: Breed not found (main breed does not exist)
+        code:
+          type: integer
+          description: HTTP status code echoed in the response body.
+          example: 404

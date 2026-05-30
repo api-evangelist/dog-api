@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/json-structure/dog-api-alt-image-structure.json",
+  "name": "AltImage",
+  "description": "A dog image URL paired with descriptive alt text suitable for accessibility.",
+  "type": "object",
+  "properties": {
+    "url": {
+      "type": "uri",
+      "description": "URL of the dog image.",
+      "example": "https://images.dog.ceo/breeds/hound-basset/n02088238_2217.jpg"
+    },
+    "altText": {
+      "type": "string",
+      "description": "Human-readable alt text describing the image (typically \"{Sub-breed} {breed} dog\").",
+      "example": "Basset hound dog"
+    }
+  },
+  "required": [
+    "url",
+    "altText"
+  ]
+}

@@ -1,0 +1,628 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Dog API — Images
+  description: 'Dog API — Images. 13 operations. Lead operation: List Images by Breed. Self-contained Naftiko capability covering one Dog API business surface.'
+  tags:
+  - Dog API
+  - Images
+  created: '2026-05-30'
+  modified: '2026-05-30'
+binds: []
+capability:
+  consumes:
+  - type: http
+    namespace: dog-api-images
+    baseUri: https://dog.ceo/api
+    description: Dog API — Images business capability. Self-contained, no shared references.
+    resources:
+    - name: breed-breed-images
+      path: /breed/{breed}/images
+      operations:
+      - name: listImagesByBreed
+        method: GET
+        description: List Images by Breed
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: breed
+          in: path
+          type: string
+          required: true
+          description: Master breed name.
+    - name: breed-breed-images-random
+      path: /breed/{breed}/images/random
+      operations:
+      - name: randomImageByBreed
+        method: GET
+        description: Random Image by Breed
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: breed
+          in: path
+          type: string
+          required: true
+          description: Master breed name.
+    - name: breed-breed-images-random-amount
+      path: /breed/{breed}/images/random/{amount}
+      operations:
+      - name: randomImagesByBreed
+        method: GET
+        description: Multiple Random Images by Breed
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: breed
+          in: path
+          type: string
+          required: true
+          description: Master breed name.
+        - name: amount
+          in: path
+          type: integer
+          required: true
+          description: Number of random images to return.
+    - name: breed-breed-subbreed-images
+      path: /breed/{breed}/{subBreed}/images
+      operations:
+      - name: listImagesBySubBreed
+        method: GET
+        description: List Images by Sub-Breed
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: breed
+          in: path
+          type: string
+          required: true
+          description: Master breed name.
+        - name: subBreed
+          in: path
+          type: string
+          required: true
+          description: Sub-breed name.
+    - name: breed-breed-subbreed-images-random
+      path: /breed/{breed}/{subBreed}/images/random
+      operations:
+      - name: randomImageBySubBreed
+        method: GET
+        description: Random Image by Sub-Breed
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: breed
+          in: path
+          type: string
+          required: true
+          description: Master breed name.
+        - name: subBreed
+          in: path
+          type: string
+          required: true
+          description: Sub-breed name.
+    - name: breed-breed-subbreed-images-random-amount
+      path: /breed/{breed}/{subBreed}/images/random/{amount}
+      operations:
+      - name: randomImagesBySubBreed
+        method: GET
+        description: Multiple Random Images by Sub-Breed
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: breed
+          in: path
+          type: string
+          required: true
+          description: Master breed name.
+        - name: subBreed
+          in: path
+          type: string
+          required: true
+          description: Sub-breed name.
+        - name: amount
+          in: path
+          type: integer
+          required: true
+          description: Number of random images to return.
+    - name: breeds-image-random
+      path: /breeds/image/random
+      operations:
+      - name: randomImage
+        method: GET
+        description: Random Image From Any Breed
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: breeds-image-random-amount
+      path: /breeds/image/random/{amount}
+      operations:
+      - name: randomImages
+        method: GET
+        description: Multiple Random Images From Any Breed
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: amount
+          in: path
+          type: integer
+          required: true
+          description: Number of random images to return.
+    - name: breeds-image-random-amount-alt
+      path: /breeds/image/random/{amount}/alt
+      operations:
+      - name: randomImagesWithAlt
+        method: GET
+        description: Multiple Random Images From Any Breed With Alt Text
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: amount
+          in: path
+          type: integer
+          required: true
+          description: Number of random images to return.
+    - name: breed-breed-images-alt
+      path: /breed/{breed}/images/alt
+      operations:
+      - name: listImagesByBreedWithAlt
+        method: GET
+        description: List Images by Breed With Alt Text
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: breed
+          in: path
+          type: string
+          required: true
+          description: Master breed name.
+    - name: breed-breed-images-random-amount-alt
+      path: /breed/{breed}/images/random/{amount}/alt
+      operations:
+      - name: randomImagesByBreedWithAlt
+        method: GET
+        description: Multiple Random Images by Breed With Alt Text
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: breed
+          in: path
+          type: string
+          required: true
+          description: Master breed name.
+        - name: amount
+          in: path
+          type: integer
+          required: true
+          description: Number of random images to return.
+    - name: breed-breed-subbreed-images-alt
+      path: /breed/{breed}/{subBreed}/images/alt
+      operations:
+      - name: listImagesBySubBreedWithAlt
+        method: GET
+        description: List Images by Sub-Breed With Alt Text
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: breed
+          in: path
+          type: string
+          required: true
+          description: Master breed name.
+        - name: subBreed
+          in: path
+          type: string
+          required: true
+          description: Sub-breed name.
+    - name: breed-breed-subbreed-images-random-amount-alt
+      path: /breed/{breed}/{subBreed}/images/random/{amount}/alt
+      operations:
+      - name: randomImagesBySubBreedWithAlt
+        method: GET
+        description: Multiple Random Images by Sub-Breed With Alt Text
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: breed
+          in: path
+          type: string
+          required: true
+          description: Master breed name.
+        - name: subBreed
+          in: path
+          type: string
+          required: true
+          description: Sub-breed name.
+        - name: amount
+          in: path
+          type: integer
+          required: true
+          description: Number of random images to return.
+  exposes:
+  - type: rest
+    namespace: dog-api-images-rest
+    port: 8080
+    description: REST adapter for Dog API — Images. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/breed/{breed}/images
+      name: v1-breed-breed-images
+      description: REST surface for breed-breed-images.
+      operations:
+      - method: GET
+        name: listImagesByBreed
+        description: List Images by Breed
+        call: dog-api-images.listImagesByBreed
+        with:
+          breed: rest.breed
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/breed/{breed}/images/random
+      name: v1-breed-breed-images-random
+      description: REST surface for breed-breed-images-random.
+      operations:
+      - method: GET
+        name: randomImageByBreed
+        description: Random Image by Breed
+        call: dog-api-images.randomImageByBreed
+        with:
+          breed: rest.breed
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/breed/{breed}/images/random/{amount}
+      name: v1-breed-breed-images-random-amount
+      description: REST surface for breed-breed-images-random-amount.
+      operations:
+      - method: GET
+        name: randomImagesByBreed
+        description: Multiple Random Images by Breed
+        call: dog-api-images.randomImagesByBreed
+        with:
+          breed: rest.breed
+          amount: rest.amount
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/breed/{breed}/{subbreed}/images
+      name: v1-breed-breed-subbreed-images
+      description: REST surface for breed-breed-subbreed-images.
+      operations:
+      - method: GET
+        name: listImagesBySubBreed
+        description: List Images by Sub-Breed
+        call: dog-api-images.listImagesBySubBreed
+        with:
+          breed: rest.breed
+          subBreed: rest.subBreed
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/breed/{breed}/{subbreed}/images/random
+      name: v1-breed-breed-subbreed-images-random
+      description: REST surface for breed-breed-subbreed-images-random.
+      operations:
+      - method: GET
+        name: randomImageBySubBreed
+        description: Random Image by Sub-Breed
+        call: dog-api-images.randomImageBySubBreed
+        with:
+          breed: rest.breed
+          subBreed: rest.subBreed
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/breed/{breed}/{subbreed}/images/random/{amount}
+      name: v1-breed-breed-subbreed-images-random-amount
+      description: REST surface for breed-breed-subbreed-images-random-amount.
+      operations:
+      - method: GET
+        name: randomImagesBySubBreed
+        description: Multiple Random Images by Sub-Breed
+        call: dog-api-images.randomImagesBySubBreed
+        with:
+          breed: rest.breed
+          subBreed: rest.subBreed
+          amount: rest.amount
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/breeds/image/random
+      name: v1-breeds-image-random
+      description: REST surface for breeds-image-random.
+      operations:
+      - method: GET
+        name: randomImage
+        description: Random Image From Any Breed
+        call: dog-api-images.randomImage
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/breeds/image/random/{amount}
+      name: v1-breeds-image-random-amount
+      description: REST surface for breeds-image-random-amount.
+      operations:
+      - method: GET
+        name: randomImages
+        description: Multiple Random Images From Any Breed
+        call: dog-api-images.randomImages
+        with:
+          amount: rest.amount
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/breeds/image/random/{amount}/alt
+      name: v1-breeds-image-random-amount-alt
+      description: REST surface for breeds-image-random-amount-alt.
+      operations:
+      - method: GET
+        name: randomImagesWithAlt
+        description: Multiple Random Images From Any Breed With Alt Text
+        call: dog-api-images.randomImagesWithAlt
+        with:
+          amount: rest.amount
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/breed/{breed}/images/alt
+      name: v1-breed-breed-images-alt
+      description: REST surface for breed-breed-images-alt.
+      operations:
+      - method: GET
+        name: listImagesByBreedWithAlt
+        description: List Images by Breed With Alt Text
+        call: dog-api-images.listImagesByBreedWithAlt
+        with:
+          breed: rest.breed
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/breed/{breed}/images/random/{amount}/alt
+      name: v1-breed-breed-images-random-amount-alt
+      description: REST surface for breed-breed-images-random-amount-alt.
+      operations:
+      - method: GET
+        name: randomImagesByBreedWithAlt
+        description: Multiple Random Images by Breed With Alt Text
+        call: dog-api-images.randomImagesByBreedWithAlt
+        with:
+          breed: rest.breed
+          amount: rest.amount
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/breed/{breed}/{subbreed}/images/alt
+      name: v1-breed-breed-subbreed-images-alt
+      description: REST surface for breed-breed-subbreed-images-alt.
+      operations:
+      - method: GET
+        name: listImagesBySubBreedWithAlt
+        description: List Images by Sub-Breed With Alt Text
+        call: dog-api-images.listImagesBySubBreedWithAlt
+        with:
+          breed: rest.breed
+          subBreed: rest.subBreed
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/breed/{breed}/{subbreed}/images/random/{amount}/alt
+      name: v1-breed-breed-subbreed-images-random-amount-alt
+      description: REST surface for breed-breed-subbreed-images-random-amount-alt.
+      operations:
+      - method: GET
+        name: randomImagesBySubBreedWithAlt
+        description: Multiple Random Images by Sub-Breed With Alt Text
+        call: dog-api-images.randomImagesBySubBreedWithAlt
+        with:
+          breed: rest.breed
+          subBreed: rest.subBreed
+          amount: rest.amount
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: dog-api-images-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Dog API — Images. One tool per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: list-images-breed
+      description: List Images by Breed
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: dog-api-images.listImagesByBreed
+      with:
+        breed: tools.breed
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: random-image-breed
+      description: Random Image by Breed
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: dog-api-images.randomImageByBreed
+      with:
+        breed: tools.breed
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: multiple-random-images-breed
+      description: Multiple Random Images by Breed
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: dog-api-images.randomImagesByBreed
+      with:
+        breed: tools.breed
+        amount: tools.amount
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-images-sub-breed
+      description: List Images by Sub-Breed
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: dog-api-images.listImagesBySubBreed
+      with:
+        breed: tools.breed
+        subBreed: tools.subBreed
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: random-image-sub-breed
+      description: Random Image by Sub-Breed
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: dog-api-images.randomImageBySubBreed
+      with:
+        breed: tools.breed
+        subBreed: tools.subBreed
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: multiple-random-images-sub-breed
+      description: Multiple Random Images by Sub-Breed
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: dog-api-images.randomImagesBySubBreed
+      with:
+        breed: tools.breed
+        subBreed: tools.subBreed
+        amount: tools.amount
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: random-image-any-breed
+      description: Random Image From Any Breed
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: dog-api-images.randomImage
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: multiple-random-images-any-breed
+      description: Multiple Random Images From Any Breed
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: dog-api-images.randomImages
+      with:
+        amount: tools.amount
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: multiple-random-images-any-breed-2
+      description: Multiple Random Images From Any Breed With Alt Text
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: dog-api-images.randomImagesWithAlt
+      with:
+        amount: tools.amount
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-images-breed-alt-text
+      description: List Images by Breed With Alt Text
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: dog-api-images.listImagesByBreedWithAlt
+      with:
+        breed: tools.breed
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: multiple-random-images-breed-alt
+      description: Multiple Random Images by Breed With Alt Text
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: dog-api-images.randomImagesByBreedWithAlt
+      with:
+        breed: tools.breed
+        amount: tools.amount
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-images-sub-breed-alt
+      description: List Images by Sub-Breed With Alt Text
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: dog-api-images.listImagesBySubBreedWithAlt
+      with:
+        breed: tools.breed
+        subBreed: tools.subBreed
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: multiple-random-images-sub-breed-2
+      description: Multiple Random Images by Sub-Breed With Alt Text
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: dog-api-images.randomImagesBySubBreedWithAlt
+      with:
+        breed: tools.breed
+        subBreed: tools.subBreed
+        amount: tools.amount
+      outputParameters:
+      - type: object
+        mapping: $.

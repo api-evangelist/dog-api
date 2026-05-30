@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/json-structure/dog-api-breed-list-response-structure.json",
+  "name": "BreedListResponse",
+  "description": "Response envelope returning a map of master breed names to their sub-breed lists.",
+  "type": "object",
+  "properties": {
+    "message": {
+      "type": "object",
+      "description": "Map of breed name to a list of sub-breed names.",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "example": "afghan"
+        }
+      },
+      "example": {
+        "hound": [
+          "afghan",
+          "basset",
+          "blood"
+        ],
+        "retriever": [
+          "chesapeake",
+          "golden"
+        ]
+      }
+    },
+    "status": {
+      "type": "string",
+      "description": "Outcome marker; \"success\" when the request succeeded.",
+      "enum": [
+        "success",
+        "error"
+      ],
+      "example": "success"
+    }
+  },
+  "required": [
+    "message",
+    "status"
+  ]
+}

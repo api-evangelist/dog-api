@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/json-schema/dog-api-image-response-schema.json",
+  "title": "ImageResponse",
+  "description": "Response envelope returning a single dog image URL.",
+  "type": "object",
+  "properties": {
+    "message": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL of the dog image.",
+      "example": "https://images.dog.ceo/breeds/hound-afghan/n02088094_1003.jpg"
+    },
+    "status": {
+      "type": "string",
+      "description": "Outcome marker; \"success\" when the request succeeded.",
+      "enum": [
+        "success",
+        "error"
+      ],
+      "example": "success"
+    }
+  },
+  "required": [
+    "message",
+    "status"
+  ]
+}

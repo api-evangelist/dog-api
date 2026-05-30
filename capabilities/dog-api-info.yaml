@@ -1,0 +1,120 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Dog API — Info
+  description: 'Dog API — Info. 2 operations. Lead operation: Get Breed Info. Self-contained Naftiko capability covering one Dog API business surface.'
+  tags:
+  - Dog API
+  - Info
+  created: '2026-05-30'
+  modified: '2026-05-30'
+binds: []
+capability:
+  consumes:
+  - type: http
+    namespace: dog-api-info
+    baseUri: https://dog.ceo/api
+    description: Dog API — Info business capability. Self-contained, no shared references.
+    resources:
+    - name: breed-breed
+      path: /breed/{breed}
+      operations:
+      - name: getBreedInfo
+        method: GET
+        description: Get Breed Info
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: breed
+          in: path
+          type: string
+          required: true
+          description: Master breed name.
+    - name: breed-breed-subbreed
+      path: /breed/{breed}/{subBreed}
+      operations:
+      - name: getSubBreedInfo
+        method: GET
+        description: Get Sub-Breed Info
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: breed
+          in: path
+          type: string
+          required: true
+          description: Master breed name.
+        - name: subBreed
+          in: path
+          type: string
+          required: true
+          description: Sub-breed name.
+  exposes:
+  - type: rest
+    namespace: dog-api-info-rest
+    port: 8080
+    description: REST adapter for Dog API — Info. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/breed/{breed}
+      name: v1-breed-breed
+      description: REST surface for breed-breed.
+      operations:
+      - method: GET
+        name: getBreedInfo
+        description: Get Breed Info
+        call: dog-api-info.getBreedInfo
+        with:
+          breed: rest.breed
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/breed/{breed}/{subbreed}
+      name: v1-breed-breed-subbreed
+      description: REST surface for breed-breed-subbreed.
+      operations:
+      - method: GET
+        name: getSubBreedInfo
+        description: Get Sub-Breed Info
+        call: dog-api-info.getSubBreedInfo
+        with:
+          breed: rest.breed
+          subBreed: rest.subBreed
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: dog-api-info-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Dog API — Info. One tool per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: get-breed-info
+      description: Get Breed Info
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: dog-api-info.getBreedInfo
+      with:
+        breed: tools.breed
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-sub-breed-info
+      description: Get Sub-Breed Info
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: dog-api-info.getSubBreedInfo
+      with:
+        breed: tools.breed
+        subBreed: tools.subBreed
+      outputParameters:
+      - type: object
+        mapping: $.

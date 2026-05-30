@@ -1,0 +1,24 @@
+{
+  "message": {
+    "poodle": [],
+    "retriever": [
+      "chesapeake",
+      "curly",
+      "flatcoated",
+      "golden"
+    ],
+    "spaniel": [
+      "blenheim",
+      "brittany",
+      "cocker",
+      "irish"
+    ],
+    "hound": [
+      "afghan",
+      "basset",
+      "blood",
+      "english"
+    ]
+  },
+  "status": "success"
+}

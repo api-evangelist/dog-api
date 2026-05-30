@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/json-structure/dog-api-string-response-structure.json",
+  "name": "StringResponse",
+  "description": "Response envelope returning a single string value (a single breed name or free-text info).",
+  "type": "object",
+  "properties": {
+    "message": {
+      "type": "string",
+      "description": "The returned string value.",
+      "example": "hound"
+    },
+    "status": {
+      "type": "string",
+      "description": "Outcome marker; \"success\" when the request succeeded.",
+      "enum": [
+        "success",
+        "error"
+      ],
+      "example": "success"
+    }
+  },
+  "required": [
+    "message",
+    "status"
+  ]
+}

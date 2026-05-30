@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/json-schema/dog-api-alt-image-list-response-schema.json",
+  "title": "AltImageListResponse",
+  "description": "Response envelope returning a list of image objects each containing a URL and alt text.",
+  "type": "object",
+  "properties": {
+    "message": {
+      "type": "array",
+      "description": "List of image objects with URL and alt text.",
+      "items": {
+        "type": "object",
+        "description": "A dog image URL paired with descriptive alt text suitable for accessibility.",
+        "required": [
+          "url",
+          "altText"
+        ],
+        "properties": {
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL of the dog image.",
+            "example": "https://images.dog.ceo/breeds/hound-basset/n02088238_2217.jpg"
+          },
+          "altText": {
+            "type": "string",
+            "description": "Human-readable alt text describing the image (typically \"{Sub-breed} {breed} dog\").",
+            "example": "Basset hound dog"
+          }
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "description": "Outcome marker; \"success\" when the request succeeded.",
+      "enum": [
+        "success",
+        "error"
+      ],
+      "example": "success"
+    }
+  },
+  "required": [
+    "message",
+    "status"
+  ]
+}

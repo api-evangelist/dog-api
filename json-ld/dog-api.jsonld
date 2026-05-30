@@ -1,19 +1,44 @@
 {
   "@context": {
     "schema": "https://schema.org/",
+    "dog": "https://dog.ceo/vocab/",
     "name": "schema:name",
     "description": "schema:description",
     "url": "schema:url",
     "provider": "schema:provider",
-    "category": "schema:category"
+    "category": "schema:category",
+    "license": "schema:license",
+    "softwareVersion": "schema:softwareVersion",
+    "codeRepository": "schema:codeRepository",
+    "programmingLanguage": "schema:programmingLanguage",
+    "operatingSystem": "schema:operatingSystem"
   },
   "@type": "schema:WebAPI",
   "name": "Dog API",
-  "description": "Open-source REST API serving over 20,000 dog images across 120+ breeds.",
+  "description": "Open-source REST API serving over 20,000 dog images across 120+ breeds. Free, no authentication required, JSON responses, optional alt-text variant for accessibility.",
   "url": "https://dog.ceo/dog-api/",
-  "category": ["Animals", "Open Data", "Images"],
+  "softwareVersion": "1.1.0",
+  "codeRepository": "https://github.com/ElliottLandsborough/dog-ceo-api",
+  "programmingLanguage": "PHP",
+  "category": [
+    "Animals",
+    "Open Data",
+    "Images",
+    "Open Source"
+  ],
+  "license": {
+    "@type": "schema:CreativeWork",
+    "name": "MIT License",
+    "url": "https://opensource.org/licenses/MIT"
+  },
   "provider": {
-    "@type": "schema:Organization",
-    "name": "dog.ceo"
+    "@type": "schema:Person",
+    "name": "Pete Vlot",
+    "url": "https://dog.ceo"
+  },
+  "maintainer": {
+    "@type": "schema:Person",
+    "name": "Elliott Landsborough",
+    "url": "https://github.com/ElliottLandsborough"
   }
 }

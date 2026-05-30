@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/json-schema/dog-api-error-response-schema.json",
+  "title": "ErrorResponse",
+  "description": "Response envelope returned when an API request fails (e.g., unknown breed).",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "description": "Outcome marker; \"error\" when the request failed.",
+      "enum": [
+        "error"
+      ],
+      "example": "error"
+    },
+    "message": {
+      "type": "string",
+      "description": "Human-readable error description.",
+      "example": "Breed not found (main breed does not exist)"
+    },
+    "code": {
+      "type": "integer",
+      "description": "HTTP status code echoed in the response body.",
+      "example": 404
+    }
+  },
+  "required": [
+    "status",
+    "message",
+    "code"
+  ]
+}

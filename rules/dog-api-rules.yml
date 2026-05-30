@@ -1,23 +1,333 @@
-aid: dog-api:dog-api
-name: Dog API Rules
-description: >-
-  Operational and design rules governing access and consumption of the Dog API.
+extends:
+  - spectral:oas
+
+aliases:
+  PathItem:
+    - "$.paths[*]"
+  Operation:
+    - "$.paths[*][get,post,put,patch,delete]"
+
 rules:
-  - id: no-authentication
-    name: No Authentication Required
-    description: The Dog API is fully open and requires no API key, token, or authentication.
-  - id: get-only
-    name: Read-Only HTTP GET
-    description: All endpoints are read-only and accept only HTTP GET requests.
-  - id: random-count-limit
-    name: Random Image Count Limit
-    description: When fetching multiple random images, the maximum allowed count is 50.
-  - id: response-envelope
-    name: Standard Response Envelope
-    description: All responses follow a `{message, status}` JSON envelope where `status` is `success` or `error`.
-  - id: open-source-imagery
-    name: Open-Source Imagery
-    description: All image content returned is open source. Attribution to dog.ceo is encouraged.
-  - id: rate-limit-courtesy
-    name: Rate-Limit Courtesy
-    description: No published rate limit exists, but consumers should cache responses and avoid abusive request volumes.
+  # ── INFO / METADATA ─────────────────────────────────────────────────
+  info-title-format:
+    description: API title must begin with "Dog API".
+    message: 'info.title must start with "Dog API"'
+    severity: error
+    given: $.info.title
+    then:
+      function: pattern
+      functionOptions:
+        match: "^Dog API"
+
+  info-description-required:
+    description: API info.description is required and must be at least 40 characters.
+    message: 'info.description must be present and >= 40 characters'
+    severity: error
+    given: $.info
+    then:
+      - field: description
+        function: truthy
+      - field: description
+        function: length
+        functionOptions:
+          min: 40
+
+  info-version-required:
+    description: API info.version is required.
+    message: 'info.version is required'
+    severity: error
+    given: $.info
+    then:
+      field: version
+      function: truthy
+
+  info-license-required:
+    description: API info.license must be present and reference the MIT license used by the upstream open-source project.
+    severity: warn
+    given: $.info
+    then:
+      - field: license
+        function: truthy
+      - field: license.name
+        function: pattern
+        functionOptions:
+          match: "^MIT$"
+
+  # ── OPENAPI VERSION ─────────────────────────────────────────────────
+  openapi-version-3-1:
+    description: Use OpenAPI 3.1.x.
+    message: 'openapi version must be 3.1.x'
+    severity: warn
+    given: $.openapi
+    then:
+      function: pattern
+      functionOptions:
+        match: "^3\\.1\\."
+
+  # ── SERVERS ─────────────────────────────────────────────────────────
+  servers-required:
+    description: At least one server must be declared.
+    severity: error
+    given: $
+    then:
+      field: servers
+      function: truthy
+
+  servers-https-only:
+    description: All server URLs must use HTTPS.
+    severity: error
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://"
+
+  servers-dog-ceo-host:
+    description: Servers must use the canonical dog.ceo host.
+    severity: warn
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://dog\\.ceo/api"
+
+  # ── PATHS ───────────────────────────────────────────────────────────
+  paths-kebab-or-lowercase:
+    description: Path segments must be lowercase (no uppercase letters or underscores).
+    message: 'path "{{value}}" must use lowercase letters only'
+    severity: warn
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "[A-Z_]"
+
+  paths-no-trailing-slash:
+    description: Paths must not end with a trailing slash.
+    severity: error
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: ".+/$"
+
+  paths-no-query-string:
+    description: Paths must not contain query strings.
+    severity: error
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "\\?"
+
+  # ── OPERATIONS ──────────────────────────────────────────────────────
+  operation-operationId-required:
+    description: Every operation must declare an operationId.
+    severity: error
+    given: "#Operation"
+    then:
+      field: operationId
+      function: truthy
+
+  operation-operationId-camelcase:
+    description: operationId must be camelCase.
+    message: 'operationId "{{value}}" must be camelCase'
+    severity: warn
+    given: "#Operation.operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  operation-summary-required:
+    description: Every operation must have a summary.
+    severity: error
+    given: "#Operation"
+    then:
+      field: summary
+      function: truthy
+
+  operation-summary-dog-api-prefix:
+    description: Operation summaries must begin with "Dog API".
+    message: 'summary "{{value}}" must start with "Dog API"'
+    severity: warn
+    given: "#Operation.summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^Dog API "
+
+  operation-description-required:
+    description: Every operation must have a description.
+    severity: warn
+    given: "#Operation"
+    then:
+      field: description
+      function: truthy
+
+  operation-tags-required:
+    description: Every operation must declare at least one tag.
+    severity: error
+    given: "#Operation"
+    then:
+      field: tags
+      function: length
+      functionOptions:
+        min: 1
+
+  operation-get-only:
+    description: The Dog API is read-only; only GET methods are permitted.
+    message: 'method "{{property}}" is not allowed; Dog API exposes only GET'
+    severity: error
+    given: "#PathItem"
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        notMatch: "^(post|put|patch|delete)$"
+
+  # ── TAGS ────────────────────────────────────────────────────────────
+  tags-global-array:
+    description: Global tags array must be defined with descriptions.
+    severity: warn
+    given: $
+    then:
+      field: tags
+      function: truthy
+
+  tag-title-case:
+    description: Tag names must use Title Case.
+    message: 'tag "{{value}}" must use Title Case'
+    severity: warn
+    given: $.tags[*].name
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][A-Za-z0-9-]*( [A-Z][A-Za-z0-9-]*)*$"
+
+  tag-description-required:
+    description: Every tag must have a description.
+    severity: warn
+    given: $.tags[*]
+    then:
+      field: description
+      function: truthy
+
+  # ── PARAMETERS ──────────────────────────────────────────────────────
+  parameter-description-required:
+    description: Every parameter must declare a description.
+    severity: warn
+    given: "#Operation.parameters[*]"
+    then:
+      field: description
+      function: truthy
+
+  parameter-camelcase:
+    description: Parameter names must be camelCase.
+    message: 'parameter "{{value}}" must be camelCase'
+    severity: warn
+    given: "#Operation.parameters[*].name"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  parameter-schema-required:
+    description: Every parameter must declare a schema.
+    severity: error
+    given: "#Operation.parameters[*]"
+    then:
+      field: schema
+      function: truthy
+
+  parameter-no-query:
+    description: The Dog API uses only path parameters; no query parameters are permitted.
+    severity: warn
+    given: "#Operation.parameters[*]"
+    then:
+      field: in
+      function: pattern
+      functionOptions:
+        notMatch: "^query$"
+
+  # ── RESPONSES ───────────────────────────────────────────────────────
+  response-200-required:
+    description: Every operation must declare a 200 response.
+    severity: error
+    given: "#Operation.responses"
+    then:
+      field: "200"
+      function: truthy
+
+  response-description-required:
+    description: Every response must include a description.
+    severity: error
+    given: "#Operation.responses[*]"
+    then:
+      field: description
+      function: truthy
+
+  response-json-content:
+    description: Every 2xx and 4xx response must define application/json content.
+    severity: warn
+    given:
+      - "#Operation.responses['200'].content"
+      - "#Operation.responses['404'].content"
+    then:
+      field: application/json
+      function: truthy
+
+  # ── SCHEMAS ─────────────────────────────────────────────────────────
+  schema-envelope-message-status:
+    description: All response schemas must use the {message, status} envelope.
+    message: 'schema must include "message" and "status" properties'
+    severity: warn
+    given: $.components.schemas[?(@.type == 'object')]
+    then:
+      field: properties
+      function: truthy
+
+  schema-status-enum:
+    description: status property must be an enum of "success" and "error".
+    severity: warn
+    given: $.components.schemas[*].properties.status
+    then:
+      field: enum
+      function: truthy
+
+  schema-description-required:
+    description: Every component schema must have a description.
+    severity: warn
+    given: $.components.schemas[*]
+    then:
+      field: description
+      function: truthy
+
+  schema-property-camelcase:
+    description: Schema properties must be camelCase (e.g., altText, not alt_text).
+    message: 'property "{{property}}" must be camelCase'
+    severity: warn
+    given: $.components.schemas[*].properties
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  # ── SECURITY ────────────────────────────────────────────────────────
+  security-none-required:
+    description: The Dog API is fully open and must not declare a security scheme.
+    severity: warn
+    given: $
+    then:
+      field: security
+      function: falsy
+
+  # ── MICROCKS ────────────────────────────────────────────────────────
+  operation-microcks-extension:
+    description: Operations should include x-microcks-operation for mock server compatibility.
+    severity: info
+    given: "#Operation"
+    then:
+      field: x-microcks-operation
+      function: truthy
