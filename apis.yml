@@ -1,17 +1,17 @@
 aid: dog-api
 name: Dog API
-description: The internet's biggest collection of open-source dog pictures. Fetching
-  over 20,000 dog images accessible by more than 120 breeds via a free, no-auth REST
-  API returning JSON. Optional alt-text variants pair every image URL with descriptive
-  text for accessibility.
+description: >-
+  The internet's biggest collection of open-source dog pictures. Fetching over 20,000 dog images accessible by more than
+  120 breeds via a free, no-auth REST API returning JSON. Optional alt-text variants pair every image URL with
+  descriptive text for accessibility.
 kind: contract
 x-type: opensource
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-- Dogs
-- Images
-- Open Data
-- Open Source
+  - Dogs
+  - Images
+  - Open Data
+  - Open Source
 url: https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/apis.yml
 created: '2024-11-14'
 modified: '2026-05-30'
@@ -19,109 +19,111 @@ specificationVersion: '0.19'
 access: 3rd-Party
 position: Consuming
 apis:
-- aid: dog-api:dog-api
-  name: Dog API
-  description: The Dog API (dog.ceo) is the internet's largest collection of open-source
-    dog pictures, exposing over 20,000 images across 120+ breeds. The API requires
-    no authentication and returns JSON. The canonical implementation is the open-source
-    PHP Symfony project at github.com/ElliottLandsborough/dog-ceo-api, MIT licensed.
-  humanURL: https://dog.ceo/dog-api/
-  baseURL: https://dog.ceo/api
-  tags:
-  - Dogs
-  - Images
-  - Open Data
-  properties:
+  - aid: dog-api:dog-api
+    name: Dog API
+    description: >-
+      The Dog API (dog.ceo) is the internet's largest collection of open-source dog pictures, exposing over 20,000
+      images across 120+ breeds. The API requires no authentication and returns JSON. The canonical implementation is
+      the open-source PHP Symfony project at github.com/ElliottLandsborough/dog-ceo-api, MIT licensed.
+    humanURL: https://dog.ceo/dog-api/
+    baseURL: https://dog.ceo/api
+    tags:
+      - Dogs
+      - Images
+      - Open Data
+    properties:
+      - type: Documentation
+        url: https://dog.ceo/dog-api/documentation
+      - type: GitHub
+        url: https://github.com/ElliottLandsborough/dog-ceo-api
+      - type: SourceImages
+        url: https://github.com/jigsawpieces/dog-api-images
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/openapi/dog-api.yml
+      - type: Rules
+        url: https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/rules/dog-api-rules.yml
+      - type: JSONSchema
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/json-schema/dog-api-breed-list-response-schema.json
+      - type: JSONStructure
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/json-structure/dog-api-breed-list-response-structure.json
+      - type: JSONLD
+        url: https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/json-ld/dog-api.jsonld
+      - type: JSONLDContext
+        url: https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/json-ld/dog-api-context.jsonld
+      - type: Vocabulary
+        url: https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/vocabulary/dog-api.yml
+      - type: Plans
+        url: https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/plans/dog-api-plans-pricing.yml
+      - type: RateLimits
+        url: https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/rate-limits/dog-api-rate-limits.yml
+      - type: FinOps
+        url: https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/finops/dog-api-finops.yml
+common:
+  - type: Website
+    url: https://dog.ceo
   - type: Documentation
     url: https://dog.ceo/dog-api/documentation
   - type: GitHub
     url: https://github.com/ElliottLandsborough/dog-ceo-api
-  - type: SourceImages
-    url: https://github.com/jigsawpieces/dog-api-images
-  - type: OpenAPI
-    url: https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/openapi/dog-api.yml
-  - type: Rules
-    url: https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/rules/dog-api-rules.yml
-  - type: JSONSchema
-    url: https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/json-schema/dog-api-breed-list-response-schema.json
-  - type: JSONStructure
-    url: https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/json-structure/dog-api-breed-list-response-structure.json
-  - type: JSONLD
-    url: https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/json-ld/dog-api.jsonld
-  - type: JSONLDContext
-    url: https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/json-ld/dog-api-context.jsonld
-  - type: Vocabulary
-    url: https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/vocabulary/dog-api.yml
-  - type: NaftikoCapability
-    url: capabilities/dog-api-breeds.yaml
-  - type: NaftikoCapability
-    url: capabilities/dog-api-images.yaml
-  - type: NaftikoCapability
-    url: capabilities/dog-api-info.yaml
-  - type: Plans
-    url: https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/plans/dog-api-plans-pricing.yml
-  - type: RateLimits
-    url: https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/rate-limits/dog-api-rate-limits.yml
-  - type: FinOps
-    url: https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/finops/dog-api-finops.yml
-common:
-- type: Website
-  url: https://dog.ceo
-- type: Documentation
-  url: https://dog.ceo/dog-api/documentation
-- type: GitHub
-  url: https://github.com/ElliottLandsborough/dog-ceo-api
-- type: License
-  url: https://opensource.org/licenses/MIT
-- type: Tools
-  title: MCP Server (Community)
-  url: https://github.com/JithunMethusahan/dog-api-mcp-community
-- type: CodeExamples
-  title: p5.js Example
-  url: https://editor.p5js.org/codingtrain/sketches/lQxT7PTKC
-- type: CodeExamples
-  title: Vanilla JS Example
-  url: https://codepen.io/elliottlan/pen/MNEWNx
-- type: CodeExamples
-  title: jQuery Example
-  url: https://codepen.io/elliottlan/pen/KOXKLG
-- type: CodeExamples
-  title: Flutter Example
-  url: https://github.com/LIVELUCKY/dogs
-- type: CodeExamples
-  title: Node.js Example
-  url: https://github.com/mrbrunelli/dog-time-decorator
+  - type: License
+    url: https://opensource.org/licenses/MIT
+  - type: Tools
+    title: MCP Server (Community)
+    url: https://github.com/JithunMethusahan/dog-api-mcp-community
+  - type: CodeExamples
+    title: p5.js Example
+    url: https://editor.p5js.org/codingtrain/sketches/lQxT7PTKC
+  - type: CodeExamples
+    title: Vanilla JS Example
+    url: https://codepen.io/elliottlan/pen/MNEWNx
+  - type: CodeExamples
+    title: jQuery Example
+    url: https://codepen.io/elliottlan/pen/KOXKLG
+  - type: CodeExamples
+    title: Flutter Example
+    url: https://github.com/LIVELUCKY/dogs
+  - type: CodeExamples
+    title: Node.js Example
+    url: https://github.com/mrbrunelli/dog-time-decorator
 features:
-- name: No Authentication
-  description: Fully open API; no key, token, or login required to consume any endpoint.
-- name: 120+ Breeds, 20,000+ Images
-  description: Broad coverage of master breeds and sub-breeds curated from the jigsawpieces/dog-api-images dataset.
-- name: Alt-Text Variant
-  description: Every image-returning endpoint has an `/alt` sibling that pairs the URL with descriptive alt text for accessibility.
-- name: Random Sampling
-  description: Random selection is available across breeds, sub-breeds, and images, with optional counts up to the upstream limit.
-- name: Open-Source Implementation
-  description: PHP Symfony source code is MIT-licensed and self-hostable; cache and image storage are pluggable.
-- name: Simple Envelope
-  description: Every response uses a uniform `{message, status}` JSON envelope, with `code` added on error responses.
+  - name: No Authentication
+    description: Fully open API; no key, token, or login required to consume any endpoint.
+  - name: 120+ Breeds, 20,000+ Images
+    description: Broad coverage of master breeds and sub-breeds curated from the jigsawpieces/dog-api-images dataset.
+  - name: Alt-Text Variant
+    description: >-
+      Every image-returning endpoint has an `/alt` sibling that pairs the URL with descriptive alt text for
+      accessibility.
+  - name: Random Sampling
+    description: >-
+      Random selection is available across breeds, sub-breeds, and images, with optional counts up to the upstream
+      limit.
+  - name: Open-Source Implementation
+    description: PHP Symfony source code is MIT-licensed and self-hostable; cache and image storage are pluggable.
+  - name: Simple Envelope
+    description: Every response uses a uniform `{message, status}` JSON envelope, with `code` added on error responses.
 useCases:
-- name: Pet UI Components
-  description: Drop random dog imagery into web or mobile components, demos, and onboarding flows.
-- name: Accessibility Demos
-  description: Showcase or test alt-text rendering and screen-reader behavior with the `/alt` endpoint family.
-- name: API Workshops & Tutorials
-  description: Use as a zero-friction, no-auth example API when teaching REST consumption, MCP, or API mocking.
-- name: ML Vision Datasets
-  description: Pull breed-tagged dog photography as a permissive public dataset for vision model training and evaluation.
-- name: Mock & Contract Testing
-  description: A stable, public envelope makes the Dog API a useful upstream for Spectral, Microcks, and contract-testing exercises.
+  - name: Pet UI Components
+    description: Drop random dog imagery into web or mobile components, demos, and onboarding flows.
+  - name: Accessibility Demos
+    description: Showcase or test alt-text rendering and screen-reader behavior with the `/alt` endpoint family.
+  - name: API Workshops & Tutorials
+    description: Use as a zero-friction, no-auth example API when teaching REST consumption, MCP, or API mocking.
+  - name: ML Vision Datasets
+    description: Pull breed-tagged dog photography as a permissive public dataset for vision model training and evaluation.
+  - name: Mock & Contract Testing
+    description: >-
+      A stable, public envelope makes the Dog API a useful upstream for Spectral, Microcks, and contract-testing
+      exercises.
 integrations:
-- name: Naftiko
-  description: REST + MCP capability adapters published for Breeds, Images, and Info surfaces.
-- name: Microcks
-  description: OpenAPI ships with `x-microcks-operation` extensions and named default examples for direct mock import.
-- name: Spectral
-  description: A repo-local Spectral ruleset enforces Dog API path, summary, parameter, and schema conventions.
+  - name: Naftiko
+    description: REST + MCP capability adapters published for Breeds, Images, and Info surfaces.
+  - name: Microcks
+    description: OpenAPI ships with `x-microcks-operation` extensions and named default examples for direct mock import.
+  - name: Spectral
+    description: A repo-local Spectral ruleset enforces Dog API path, summary, parameter, and schema conventions.
 maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com
