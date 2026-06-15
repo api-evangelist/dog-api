@@ -1,0 +1,516 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dog API",
+    "version": "1.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Breeds",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dog API List All Breeds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dog.ceo/api/breeds/list/all"
+          },
+          "docs": "Returns the complete master breed list with each breed's sub-breeds (if any)."
+        },
+        {
+          "info": {
+            "name": "Dog API Random Breed Entry",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dog.ceo/api/breeds/list/all/random"
+          },
+          "docs": "Returns a single randomly selected entry from the master breed list (one breed mapped to its sub-breeds)."
+        },
+        {
+          "info": {
+            "name": "Dog API Multiple Random Breed Entries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dog.ceo/api/breeds/list/all/random/:amount",
+            "params": [
+              {
+                "name": "amount",
+                "value": "3",
+                "type": "path",
+                "description": "Number of random breed entries to return."
+              }
+            ]
+          },
+          "docs": "Returns multiple randomly selected entries from the master breed list."
+        },
+        {
+          "info": {
+            "name": "Dog API List Top-Level Breeds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dog.ceo/api/breeds/list"
+          },
+          "docs": "Returns the list of all top-level (master) breed names without sub-breeds."
+        },
+        {
+          "info": {
+            "name": "Dog API Random Top-Level Breed",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dog.ceo/api/breeds/list/random"
+          },
+          "docs": "Returns a single randomly selected top-level breed name."
+        },
+        {
+          "info": {
+            "name": "Dog API Multiple Random Top-Level Breeds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dog.ceo/api/breeds/list/random/:amount",
+            "params": [
+              {
+                "name": "amount",
+                "value": "3",
+                "type": "path",
+                "description": "Number of random top-level breed names to return."
+              }
+            ]
+          },
+          "docs": "Returns multiple randomly selected top-level breed names."
+        },
+        {
+          "info": {
+            "name": "Dog API List Sub-Breeds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dog.ceo/api/breed/:breed/list",
+            "params": [
+              {
+                "name": "breed",
+                "value": "hound",
+                "type": "path",
+                "description": "Master breed name (e.g., hound, retriever, spaniel)."
+              }
+            ]
+          },
+          "docs": "Returns the list of sub-breeds for the given master breed."
+        },
+        {
+          "info": {
+            "name": "Dog API Random Sub-Breed",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dog.ceo/api/breed/:breed/list/random",
+            "params": [
+              {
+                "name": "breed",
+                "value": "hound",
+                "type": "path",
+                "description": "Master breed name."
+              }
+            ]
+          },
+          "docs": "Returns a single random sub-breed for the given master breed."
+        },
+        {
+          "info": {
+            "name": "Dog API Multiple Random Sub-Breeds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dog.ceo/api/breed/:breed/list/random/:amount",
+            "params": [
+              {
+                "name": "breed",
+                "value": "hound",
+                "type": "path",
+                "description": "Master breed name."
+              },
+              {
+                "name": "amount",
+                "value": "3",
+                "type": "path",
+                "description": "Number of random sub-breeds to return."
+              }
+            ]
+          },
+          "docs": "Returns multiple random sub-breeds for the given master breed."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Images",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dog API List Images by Breed",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dog.ceo/api/breed/:breed/images",
+            "params": [
+              {
+                "name": "breed",
+                "value": "hound",
+                "type": "path",
+                "description": "Master breed name."
+              }
+            ]
+          },
+          "docs": "Returns all image URLs for a given master breed."
+        },
+        {
+          "info": {
+            "name": "Dog API Random Image by Breed",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dog.ceo/api/breed/:breed/images/random",
+            "params": [
+              {
+                "name": "breed",
+                "value": "hound",
+                "type": "path",
+                "description": "Master breed name."
+              }
+            ]
+          },
+          "docs": "Returns a single random image URL for the given master breed."
+        },
+        {
+          "info": {
+            "name": "Dog API Multiple Random Images by Breed",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dog.ceo/api/breed/:breed/images/random/:amount",
+            "params": [
+              {
+                "name": "breed",
+                "value": "hound",
+                "type": "path",
+                "description": "Master breed name."
+              },
+              {
+                "name": "amount",
+                "value": "3",
+                "type": "path",
+                "description": "Number of random images to return."
+              }
+            ]
+          },
+          "docs": "Returns multiple random image URLs for the given master breed."
+        },
+        {
+          "info": {
+            "name": "Dog API List Images by Sub-Breed",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dog.ceo/api/breed/:breed/:subBreed/images",
+            "params": [
+              {
+                "name": "breed",
+                "value": "hound",
+                "type": "path",
+                "description": "Master breed name."
+              },
+              {
+                "name": "subBreed",
+                "value": "afghan",
+                "type": "path",
+                "description": "Sub-breed name."
+              }
+            ]
+          },
+          "docs": "Returns all image URLs for a given sub-breed."
+        },
+        {
+          "info": {
+            "name": "Dog API Random Image by Sub-Breed",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dog.ceo/api/breed/:breed/:subBreed/images/random",
+            "params": [
+              {
+                "name": "breed",
+                "value": "hound",
+                "type": "path",
+                "description": "Master breed name."
+              },
+              {
+                "name": "subBreed",
+                "value": "afghan",
+                "type": "path",
+                "description": "Sub-breed name."
+              }
+            ]
+          },
+          "docs": "Returns a single random image URL for the given sub-breed."
+        },
+        {
+          "info": {
+            "name": "Dog API Multiple Random Images by Sub-Breed",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dog.ceo/api/breed/:breed/:subBreed/images/random/:amount",
+            "params": [
+              {
+                "name": "breed",
+                "value": "hound",
+                "type": "path",
+                "description": "Master breed name."
+              },
+              {
+                "name": "subBreed",
+                "value": "afghan",
+                "type": "path",
+                "description": "Sub-breed name."
+              },
+              {
+                "name": "amount",
+                "value": "3",
+                "type": "path",
+                "description": "Number of random images to return."
+              }
+            ]
+          },
+          "docs": "Returns multiple random image URLs for the given sub-breed."
+        },
+        {
+          "info": {
+            "name": "Dog API Random Image From Any Breed",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dog.ceo/api/breeds/image/random"
+          },
+          "docs": "Returns a random dog image URL from any breed."
+        },
+        {
+          "info": {
+            "name": "Dog API Multiple Random Images From Any Breed",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dog.ceo/api/breeds/image/random/:amount",
+            "params": [
+              {
+                "name": "amount",
+                "value": "3",
+                "type": "path",
+                "description": "Number of random images to return."
+              }
+            ]
+          },
+          "docs": "Returns multiple random dog image URLs from any breed."
+        },
+        {
+          "info": {
+            "name": "Dog API Multiple Random Images From Any Breed With Alt Text",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dog.ceo/api/breeds/image/random/:amount/alt",
+            "params": [
+              {
+                "name": "amount",
+                "value": "3",
+                "type": "path",
+                "description": "Number of random images to return."
+              }
+            ]
+          },
+          "docs": "Returns multiple random images from any breed paired with descriptive alt text."
+        },
+        {
+          "info": {
+            "name": "Dog API List Images by Breed With Alt Text",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dog.ceo/api/breed/:breed/images/alt",
+            "params": [
+              {
+                "name": "breed",
+                "value": "hound",
+                "type": "path",
+                "description": "Master breed name."
+              }
+            ]
+          },
+          "docs": "Returns all images for the given master breed paired with descriptive alt text."
+        },
+        {
+          "info": {
+            "name": "Dog API Multiple Random Images by Breed With Alt Text",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dog.ceo/api/breed/:breed/images/random/:amount/alt",
+            "params": [
+              {
+                "name": "breed",
+                "value": "hound",
+                "type": "path",
+                "description": "Master breed name."
+              },
+              {
+                "name": "amount",
+                "value": "3",
+                "type": "path",
+                "description": "Number of random images to return."
+              }
+            ]
+          },
+          "docs": "Returns multiple random images for the given master breed paired with descriptive alt text."
+        },
+        {
+          "info": {
+            "name": "Dog API List Images by Sub-Breed With Alt Text",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dog.ceo/api/breed/:breed/:subBreed/images/alt",
+            "params": [
+              {
+                "name": "breed",
+                "value": "hound",
+                "type": "path",
+                "description": "Master breed name."
+              },
+              {
+                "name": "subBreed",
+                "value": "afghan",
+                "type": "path",
+                "description": "Sub-breed name."
+              }
+            ]
+          },
+          "docs": "Returns all images for the given sub-breed paired with descriptive alt text."
+        },
+        {
+          "info": {
+            "name": "Dog API Multiple Random Images by Sub-Breed With Alt Text",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dog.ceo/api/breed/:breed/:subBreed/images/random/:amount/alt",
+            "params": [
+              {
+                "name": "breed",
+                "value": "hound",
+                "type": "path",
+                "description": "Master breed name."
+              },
+              {
+                "name": "subBreed",
+                "value": "afghan",
+                "type": "path",
+                "description": "Sub-breed name."
+              },
+              {
+                "name": "amount",
+                "value": "3",
+                "type": "path",
+                "description": "Number of random images to return."
+              }
+            ]
+          },
+          "docs": "Returns multiple random images for the given sub-breed paired with descriptive alt text."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Info",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dog API Get Breed Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dog.ceo/api/breed/:breed",
+            "params": [
+              {
+                "name": "breed",
+                "value": "hound",
+                "type": "path",
+                "description": "Master breed name."
+              }
+            ]
+          },
+          "docs": "Returns free-text descriptive information about the given master breed when available."
+        },
+        {
+          "info": {
+            "name": "Dog API Get Sub-Breed Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dog.ceo/api/breed/:breed/:subBreed",
+            "params": [
+              {
+                "name": "breed",
+                "value": "hound",
+                "type": "path",
+                "description": "Master breed name."
+              },
+              {
+                "name": "subBreed",
+                "value": "afghan",
+                "type": "path",
+                "description": "Sub-breed name."
+              }
+            ]
+          },
+          "docs": "Returns free-text descriptive information about the given sub-breed when available."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
