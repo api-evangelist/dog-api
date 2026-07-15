@@ -1,0 +1,254 @@
+generated: '2026-07-15'
+method: generated
+source: openapi/dog-api.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 24
+  by_action_class:
+    connected: 24
+  by_consequence:
+    read: 24
+  human_in_the_loop_required: 0
+operations:
+- path: /breeds/list/all
+  method: get
+  operationId: listAllBreeds
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breeds/list/all/random
+  method: get
+  operationId: randomBreedEntry
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breeds/list/all/random/{amount}
+  method: get
+  operationId: randomBreedEntries
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breeds/list
+  method: get
+  operationId: listTopLevelBreeds
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breeds/list/random
+  method: get
+  operationId: randomTopLevelBreed
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breeds/list/random/{amount}
+  method: get
+  operationId: randomTopLevelBreeds
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breed/{breed}/list
+  method: get
+  operationId: listSubBreeds
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breed/{breed}/list/random
+  method: get
+  operationId: randomSubBreed
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breed/{breed}/list/random/{amount}
+  method: get
+  operationId: randomSubBreeds
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breed/{breed}/images
+  method: get
+  operationId: listImagesByBreed
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breed/{breed}/images/random
+  method: get
+  operationId: randomImageByBreed
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breed/{breed}/images/random/{amount}
+  method: get
+  operationId: randomImagesByBreed
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breed/{breed}/{subBreed}/images
+  method: get
+  operationId: listImagesBySubBreed
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breed/{breed}/{subBreed}/images/random
+  method: get
+  operationId: randomImageBySubBreed
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breed/{breed}/{subBreed}/images/random/{amount}
+  method: get
+  operationId: randomImagesBySubBreed
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breeds/image/random
+  method: get
+  operationId: randomImage
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breeds/image/random/{amount}
+  method: get
+  operationId: randomImages
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breeds/image/random/{amount}/alt
+  method: get
+  operationId: randomImagesWithAlt
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breed/{breed}/images/alt
+  method: get
+  operationId: listImagesByBreedWithAlt
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breed/{breed}/images/random/{amount}/alt
+  method: get
+  operationId: randomImagesByBreedWithAlt
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breed/{breed}/{subBreed}/images/alt
+  method: get
+  operationId: listImagesBySubBreedWithAlt
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breed/{breed}/{subBreed}/images/random/{amount}/alt
+  method: get
+  operationId: randomImagesBySubBreedWithAlt
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breed/{breed}
+  method: get
+  operationId: getBreedInfo
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /breed/{breed}/{subBreed}
+  method: get
+  operationId: getSubBreedInfo
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none

@@ -61,6 +61,8 @@ apis:
       - type: FinOps
         url: https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/finops/dog-api-finops.yml
 common:
+  - type: AgenticAccess
+    url: agentic-access/dog-api-agentic-access.yml
   - type: DomainSecurity
     url: security/dog-api-domain-security.yml
   - type: Website
