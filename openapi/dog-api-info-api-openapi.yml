@@ -1,0 +1,162 @@
+openapi: 3.1.0
+info:
+  title: Dog Breeds Info API
+  description: The Dog API (dog.ceo) is the internet's largest collection of open-source dog pictures, exposing over 20,000 dog images accessible by more than 120 breeds. The API is free, requires no authentication, and returns JSON. An optional `alt` variant returns image URLs paired with descriptive alt text for accessibility. The canonical implementation is the open-source PHP Symfony project at github.com/ElliottLandsborough/dog-ceo-api, licensed MIT.
+  version: 1.1.0
+  contact:
+    name: Dog API
+    url: https://dog.ceo/dog-api/
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  x-generated-from: documentation+source
+  x-source-url: https://github.com/ElliottLandsborough/dog-ceo-api/blob/main/src/Controller/MainController.php
+  x-last-validated: '2026-05-30'
+servers:
+- url: https://dog.ceo/api
+  description: Dog API production server
+tags:
+- name: Info
+  description: Look up free-text breed information where available.
+paths:
+  /breed/{breed}:
+    get:
+      tags:
+      - Info
+      summary: Dog API Get Breed Info
+      description: Returns free-text descriptive information about the given master breed when available.
+      operationId: getBreedInfo
+      parameters:
+      - name: breed
+        in: path
+        required: true
+        description: Master breed name.
+        schema:
+          type: string
+        example: hound
+      responses:
+        '200':
+          description: Free-text breed information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringResponse'
+              examples:
+                GetBreedInfo200Example:
+                  summary: Default getBreedInfo 200 response
+                  x-microcks-default: true
+                  value:
+                    message: hound
+                    status: success
+        '404':
+          description: No info file exists for this breed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                GetBreedInfo404Example:
+                  summary: Default getBreedInfo 404 response
+                  x-microcks-default: true
+                  value:
+                    status: error
+                    message: Breed not found (main breed does not exist)
+                    code: 404
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /breed/{breed}/{subBreed}:
+    get:
+      tags:
+      - Info
+      summary: Dog API Get Sub-Breed Info
+      description: Returns free-text descriptive information about the given sub-breed when available.
+      operationId: getSubBreedInfo
+      parameters:
+      - name: breed
+        in: path
+        required: true
+        description: Master breed name.
+        schema:
+          type: string
+        example: hound
+      - name: subBreed
+        in: path
+        required: true
+        description: Sub-breed name.
+        schema:
+          type: string
+        example: afghan
+      responses:
+        '200':
+          description: Free-text sub-breed information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringResponse'
+              examples:
+                GetSubBreedInfo200Example:
+                  summary: Default getSubBreedInfo 200 response
+                  x-microcks-default: true
+                  value:
+                    message: hound
+                    status: success
+        '404':
+          description: No info file exists for this sub-breed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                GetSubBreedInfo404Example:
+                  summary: Default getSubBreedInfo 404 response
+                  x-microcks-default: true
+                  value:
+                    status: error
+                    message: Breed not found (main breed does not exist)
+                    code: 404
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    StringResponse:
+      type: object
+      description: Response envelope returning a single string value (a single breed name or free-text info).
+      required:
+      - message
+      - status
+      properties:
+        message:
+          type: string
+          description: The returned string value.
+          example: hound
+        status:
+          type: string
+          description: Outcome marker; "success" when the request succeeded.
+          enum:
+          - success
+          - error
+          example: success
+    ErrorResponse:
+      type: object
+      description: Response envelope returned when an API request fails (e.g., unknown breed).
+      required:
+      - status
+      - message
+      - code
+      properties:
+        status:
+          type: string
+          description: Outcome marker; "error" when the request failed.
+          enum:
+          - error
+          example: error
+        message:
+          type: string
+          description: Human-readable error description.
+          example: Breed not found (main breed does not exist)
+        code:
+          type: integer
+          description: HTTP status code echoed in the response body.
+          example: 404

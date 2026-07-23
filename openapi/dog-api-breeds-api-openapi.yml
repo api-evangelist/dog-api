@@ -1,0 +1,454 @@
+openapi: 3.1.0
+info:
+  title: Dog Breeds API
+  description: The Dog API (dog.ceo) is the internet's largest collection of open-source dog pictures, exposing over 20,000 dog images accessible by more than 120 breeds. The API is free, requires no authentication, and returns JSON. An optional `alt` variant returns image URLs paired with descriptive alt text for accessibility. The canonical implementation is the open-source PHP Symfony project at github.com/ElliottLandsborough/dog-ceo-api, licensed MIT.
+  version: 1.1.0
+  contact:
+    name: Dog API
+    url: https://dog.ceo/dog-api/
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  x-generated-from: documentation+source
+  x-source-url: https://github.com/ElliottLandsborough/dog-ceo-api/blob/main/src/Controller/MainController.php
+  x-last-validated: '2026-05-30'
+servers:
+- url: https://dog.ceo/api
+  description: Dog API production server
+tags:
+- name: Breeds
+  description: List and look up master breeds and their sub-breeds.
+paths:
+  /breeds/list/all:
+    get:
+      tags:
+      - Breeds
+      summary: Dog API List All Breeds
+      description: Returns the complete master breed list with each breed's sub-breeds (if any).
+      operationId: listAllBreeds
+      responses:
+        '200':
+          description: Successful response with master breed list.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BreedListResponse'
+              examples:
+                ListAllBreeds200Example:
+                  summary: Default listAllBreeds 200 response
+                  x-microcks-default: true
+                  value:
+                    message:
+                      hound:
+                      - afghan
+                      - basset
+                      - blood
+                      - english
+                      retriever:
+                      - chesapeake
+                      - curly
+                      - flatcoated
+                      - golden
+                      spaniel:
+                      - blenheim
+                      - brittany
+                      - cocker
+                      - irish
+                    status: success
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /breeds/list/all/random:
+    get:
+      tags:
+      - Breeds
+      summary: Dog API Random Breed Entry
+      description: Returns a single randomly selected entry from the master breed list (one breed mapped to its sub-breeds).
+      operationId: randomBreedEntry
+      responses:
+        '200':
+          description: A single random breed and its sub-breeds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BreedListResponse'
+              examples:
+                RandomBreedEntry200Example:
+                  summary: Default randomBreedEntry 200 response
+                  x-microcks-default: true
+                  value:
+                    message:
+                      hound:
+                      - afghan
+                      - basset
+                      - blood
+                      - english
+                      retriever:
+                      - chesapeake
+                      - curly
+                      - flatcoated
+                      - golden
+                      spaniel:
+                      - blenheim
+                      - brittany
+                      - cocker
+                      - irish
+                    status: success
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /breeds/list/all/random/{amount}:
+    get:
+      tags:
+      - Breeds
+      summary: Dog API Multiple Random Breed Entries
+      description: Returns multiple randomly selected entries from the master breed list.
+      operationId: randomBreedEntries
+      parameters:
+      - name: amount
+        in: path
+        required: true
+        description: Number of random breed entries to return.
+        schema:
+          type: integer
+          minimum: 1
+        example: 3
+      responses:
+        '200':
+          description: A map of random breeds to their sub-breeds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BreedListResponse'
+              examples:
+                RandomBreedEntries200Example:
+                  summary: Default randomBreedEntries 200 response
+                  x-microcks-default: true
+                  value:
+                    message:
+                      hound:
+                      - afghan
+                      - basset
+                      - blood
+                      - english
+                      retriever:
+                      - chesapeake
+                      - curly
+                      - flatcoated
+                      - golden
+                      spaniel:
+                      - blenheim
+                      - brittany
+                      - cocker
+                      - irish
+                    status: success
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /breeds/list:
+    get:
+      tags:
+      - Breeds
+      summary: Dog API List Top-Level Breeds
+      description: Returns the list of all top-level (master) breed names without sub-breeds.
+      operationId: listTopLevelBreeds
+      responses:
+        '200':
+          description: An array of top-level breed names.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringListResponse'
+              examples:
+                ListTopLevelBreeds200Example:
+                  summary: Default listTopLevelBreeds 200 response
+                  x-microcks-default: true
+                  value:
+                    message:
+                    - afghan
+                    - basset
+                    - blood
+                    - english
+                    status: success
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /breeds/list/random:
+    get:
+      tags:
+      - Breeds
+      summary: Dog API Random Top-Level Breed
+      description: Returns a single randomly selected top-level breed name.
+      operationId: randomTopLevelBreed
+      responses:
+        '200':
+          description: A single random top-level breed name.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringResponse'
+              examples:
+                RandomTopLevelBreed200Example:
+                  summary: Default randomTopLevelBreed 200 response
+                  x-microcks-default: true
+                  value:
+                    message: hound
+                    status: success
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /breeds/list/random/{amount}:
+    get:
+      tags:
+      - Breeds
+      summary: Dog API Multiple Random Top-Level Breeds
+      description: Returns multiple randomly selected top-level breed names.
+      operationId: randomTopLevelBreeds
+      parameters:
+      - name: amount
+        in: path
+        required: true
+        description: Number of random top-level breed names to return.
+        schema:
+          type: integer
+          minimum: 1
+        example: 3
+      responses:
+        '200':
+          description: An array of random top-level breed names.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringListResponse'
+              examples:
+                RandomTopLevelBreeds200Example:
+                  summary: Default randomTopLevelBreeds 200 response
+                  x-microcks-default: true
+                  value:
+                    message:
+                    - afghan
+                    - basset
+                    - blood
+                    - english
+                    status: success
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /breed/{breed}/list:
+    get:
+      tags:
+      - Breeds
+      summary: Dog API List Sub-Breeds
+      description: Returns the list of sub-breeds for the given master breed.
+      operationId: listSubBreeds
+      parameters:
+      - name: breed
+        in: path
+        required: true
+        description: Master breed name (e.g., hound, retriever, spaniel).
+        schema:
+          type: string
+        example: hound
+      responses:
+        '200':
+          description: An array of sub-breed names.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringListResponse'
+              examples:
+                ListSubBreeds200Example:
+                  summary: Default listSubBreeds 200 response
+                  x-microcks-default: true
+                  value:
+                    message:
+                    - afghan
+                    - basset
+                    - blood
+                    - english
+                    status: success
+        '404':
+          description: Breed not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                ListSubBreeds404Example:
+                  summary: Default listSubBreeds 404 response
+                  x-microcks-default: true
+                  value:
+                    status: error
+                    message: Breed not found (main breed does not exist)
+                    code: 404
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /breed/{breed}/list/random:
+    get:
+      tags:
+      - Breeds
+      summary: Dog API Random Sub-Breed
+      description: Returns a single random sub-breed for the given master breed.
+      operationId: randomSubBreed
+      parameters:
+      - name: breed
+        in: path
+        required: true
+        description: Master breed name.
+        schema:
+          type: string
+        example: hound
+      responses:
+        '200':
+          description: A single random sub-breed name.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringResponse'
+              examples:
+                RandomSubBreed200Example:
+                  summary: Default randomSubBreed 200 response
+                  x-microcks-default: true
+                  value:
+                    message: hound
+                    status: success
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /breed/{breed}/list/random/{amount}:
+    get:
+      tags:
+      - Breeds
+      summary: Dog API Multiple Random Sub-Breeds
+      description: Returns multiple random sub-breeds for the given master breed.
+      operationId: randomSubBreeds
+      parameters:
+      - name: breed
+        in: path
+        required: true
+        description: Master breed name.
+        schema:
+          type: string
+        example: hound
+      - name: amount
+        in: path
+        required: true
+        description: Number of random sub-breeds to return.
+        schema:
+          type: integer
+          minimum: 1
+        example: 3
+      responses:
+        '200':
+          description: An array of random sub-breed names.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringListResponse'
+              examples:
+                RandomSubBreeds200Example:
+                  summary: Default randomSubBreeds 200 response
+                  x-microcks-default: true
+                  value:
+                    message:
+                    - afghan
+                    - basset
+                    - blood
+                    - english
+                    status: success
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    StringResponse:
+      type: object
+      description: Response envelope returning a single string value (a single breed name or free-text info).
+      required:
+      - message
+      - status
+      properties:
+        message:
+          type: string
+          description: The returned string value.
+          example: hound
+        status:
+          type: string
+          description: Outcome marker; "success" when the request succeeded.
+          enum:
+          - success
+          - error
+          example: success
+    ErrorResponse:
+      type: object
+      description: Response envelope returned when an API request fails (e.g., unknown breed).
+      required:
+      - status
+      - message
+      - code
+      properties:
+        status:
+          type: string
+          description: Outcome marker; "error" when the request failed.
+          enum:
+          - error
+          example: error
+        message:
+          type: string
+          description: Human-readable error description.
+          example: Breed not found (main breed does not exist)
+        code:
+          type: integer
+          description: HTTP status code echoed in the response body.
+          example: 404
+    StringListResponse:
+      type: object
+      description: Response envelope returning a list of strings (e.g., breed or sub-breed names).
+      required:
+      - message
+      - status
+      properties:
+        message:
+          type: array
+          description: List of string values.
+          items:
+            type: string
+            example: afghan
+        status:
+          type: string
+          description: Outcome marker; "success" when the request succeeded.
+          enum:
+          - success
+          - error
+          example: success
+    BreedListResponse:
+      type: object
+      description: Response envelope returning a map of master breed names to their sub-breed lists.
+      required:
+      - message
+      - status
+      properties:
+        message:
+          type: object
+          description: Map of breed name to a list of sub-breed names.
+          additionalProperties:
+            type: array
+            items:
+              type: string
+              example: afghan
+          example:
+            hound:
+            - afghan
+            - basset
+            - blood
+            retriever:
+            - chesapeake
+            - golden
+        status:
+          type: string
+          description: Outcome marker; "success" when the request succeeded.
+          enum:
+          - success
+          - error
+          example: success
