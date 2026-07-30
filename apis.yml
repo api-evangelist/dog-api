@@ -6,7 +6,19 @@ description: >-
   descriptive text for accessibility.
 kind: contract
 x-type: opensource
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Freemium
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/dog-api.png
 tags:
   - Dogs
   - Images
@@ -19,47 +31,135 @@ specificationVersion: '0.19'
 access: 3rd-Party
 position: Consuming
 apis:
-  - aid: dog-api:dog-api
-    name: Dog API
-    description: >-
-      The Dog API (dog.ceo) is the internet's largest collection of open-source dog pictures, exposing over 20,000
-      images across 120+ breeds. The API requires no authentication and returns JSON. The canonical implementation is
-      the open-source PHP Symfony project at github.com/ElliottLandsborough/dog-ceo-api, MIT licensed.
-    humanURL: https://dog.ceo/dog-api/
-    baseURL: https://dog.ceo/api
-    tags:
-      - Dogs
-      - Images
-      - Open Data
-    properties:
-      - type: Documentation
-        url: https://dog.ceo/dog-api/documentation
-      - type: GitHub
-        url: https://github.com/ElliottLandsborough/dog-ceo-api
-      - type: SourceImages
-        url: https://github.com/jigsawpieces/dog-api-images
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/openapi/dog-api.yml
-      - type: Rules
-        url: https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/rules/dog-api-rules.yml
-      - type: JSONSchema
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/json-schema/dog-api-breed-list-response-schema.json
-      - type: JSONStructure
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/json-structure/dog-api-breed-list-response-structure.json
-      - type: JSONLD
-        url: https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/json-ld/dog-api.jsonld
-      - type: JSONLDContext
-        url: https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/json-ld/dog-api-context.jsonld
-      - type: Vocabulary
-        url: https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/vocabulary/dog-api.yml
-      - type: Plans
-        url: https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/plans/dog-api-plans-pricing.yml
-      - type: RateLimits
-        url: https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/rate-limits/dog-api-rate-limits.yml
-      - type: FinOps
-        url: https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/finops/dog-api-finops.yml
+- aid: dog-api:dog-api-breeds-api
+  name: Dog API Breeds API
+  description: List and look up master breeds and their sub-breeds.
+  humanURL: https://dog.ceo/dog-api/
+  baseURL: https://dog.ceo/api
+  tags:
+  - Breeds
+  properties:
+  - type: OpenAPI
+    url: openapi/dog-api-breeds-api-openapi.yml
+  - type: Documentation
+    url: https://dog.ceo/dog-api/documentation
+  - type: GitHub
+    url: https://github.com/ElliottLandsborough/dog-ceo-api
+  - type: SourceImages
+    url: https://github.com/jigsawpieces/dog-api-images
+  - type: Rules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/rules/dog-api-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/json-schema/dog-api-breed-list-response-schema.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/json-structure/dog-api-breed-list-response-structure.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/json-ld/dog-api.jsonld
+  - type: JSONLDContext
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/json-ld/dog-api-context.jsonld
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/vocabulary/dog-api.yml
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/plans/dog-api-plans-pricing.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/rate-limits/dog-api-rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/finops/dog-api-finops.yml
+- aid: dog-api:dog-api-images-api
+  name: Dog API Images API
+  description: Fetch random or breed-specific dog images (with optional alt text).
+  humanURL: https://dog.ceo/dog-api/
+  baseURL: https://dog.ceo/api
+  tags:
+  - Images
+  properties:
+  - type: OpenAPI
+    url: openapi/dog-api-images-api-openapi.yml
+  - type: Documentation
+    url: https://dog.ceo/dog-api/documentation
+  - type: GitHub
+    url: https://github.com/ElliottLandsborough/dog-ceo-api
+  - type: SourceImages
+    url: https://github.com/jigsawpieces/dog-api-images
+  - type: Rules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/rules/dog-api-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/json-schema/dog-api-breed-list-response-schema.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/json-structure/dog-api-breed-list-response-structure.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/json-ld/dog-api.jsonld
+  - type: JSONLDContext
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/json-ld/dog-api-context.jsonld
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/vocabulary/dog-api.yml
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/plans/dog-api-plans-pricing.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/rate-limits/dog-api-rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/finops/dog-api-finops.yml
+- aid: dog-api:dog-api-info-api
+  name: Dog API Info API
+  description: Look up free-text breed information where available.
+  humanURL: https://dog.ceo/dog-api/
+  baseURL: https://dog.ceo/api
+  tags:
+  - Info
+  properties:
+  - type: OpenAPI
+    url: openapi/dog-api-info-api-openapi.yml
+  - type: Documentation
+    url: https://dog.ceo/dog-api/documentation
+  - type: GitHub
+    url: https://github.com/ElliottLandsborough/dog-ceo-api
+  - type: SourceImages
+    url: https://github.com/jigsawpieces/dog-api-images
+  - type: Rules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/rules/dog-api-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/json-schema/dog-api-breed-list-response-schema.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/json-structure/dog-api-breed-list-response-structure.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/json-ld/dog-api.jsonld
+  - type: JSONLDContext
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/json-ld/dog-api-context.jsonld
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/vocabulary/dog-api.yml
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/plans/dog-api-plans-pricing.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/rate-limits/dog-api-rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/finops/dog-api-finops.yml
 common:
   - type: AgenticAccess
     url: agentic-access/dog-api-agentic-access.yml
