@@ -1,0 +1,18 @@
+{
+  "provider": "dog-api",
+  "sources": [
+    "dog-api-breeds-api-openapi.yml",
+    "dog-api-images-api-openapi.yml",
+    "dog-api-info-api-openapi.yml"
+  ],
+  "outputs": [
+    "dog-api-breeds-api-openapi.yml",
+    "dog-api-images-api-openapi.yml",
+    "dog-api-info-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
