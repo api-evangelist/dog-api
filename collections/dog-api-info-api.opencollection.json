@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dog Breeds Info API",
+    "version": "1.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Info",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dog API Get Breed Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dog.ceo/api/breed/:breed",
+            "params": [
+              {
+                "name": "breed",
+                "value": "hound",
+                "type": "path",
+                "description": "Master breed name."
+              }
+            ]
+          },
+          "docs": "Returns free-text descriptive information about the given master breed when available."
+        },
+        {
+          "info": {
+            "name": "Dog API Get Sub-Breed Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dog.ceo/api/breed/:breed/:subBreed",
+            "params": [
+              {
+                "name": "breed",
+                "value": "hound",
+                "type": "path",
+                "description": "Master breed name."
+              },
+              {
+                "name": "subBreed",
+                "value": "afghan",
+                "type": "path",
+                "description": "Sub-breed name."
+              }
+            ]
+          },
+          "docs": "Returns free-text descriptive information about the given sub-breed when available."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

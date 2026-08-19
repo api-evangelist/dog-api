@@ -1,0 +1,320 @@
+{
+  "item": [
+    {
+      "id": "1df762df-306d-4bc6-a1aa-1aa8a5e44958",
+      "name": "Info",
+      "description": {
+        "content": "Look up free-text breed information where available.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e7e9c4a0-a625-442e-9628-b7e4a6057c6f",
+          "name": "Dog API Get Breed Info",
+          "request": {
+            "name": "Dog API Get Breed Info",
+            "description": {
+              "content": "Returns free-text descriptive information about the given master breed when available.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "breed",
+                ":breed"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "breed",
+                  "description": "(Required) Master breed name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7d2062e3-6267-420b-84df-912470ec31d2",
+              "name": "Free-text breed information.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "breed",
+                    ":breed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "breed",
+                      "description": "(Required) Master breed name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"hound\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fddd7568-b3ee-4ffd-bbe3-4a99c95aadaa",
+              "name": "No info file exists for this breed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "breed",
+                    ":breed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "breed",
+                      "description": "(Required) Master breed name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"message\": \"Breed not found (main breed does not exist)\",\n  \"code\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ed61948f-ad5b-452f-b4fd-fa78e48c625a",
+          "name": "Dog API Get Sub-Breed Info",
+          "request": {
+            "name": "Dog API Get Sub-Breed Info",
+            "description": {
+              "content": "Returns free-text descriptive information about the given sub-breed when available.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "breed",
+                ":breed",
+                ":subBreed"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "breed",
+                  "description": "(Required) Master breed name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subBreed",
+                  "description": "(Required) Sub-breed name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bebfa911-45f6-4334-8908-b5bb2115bd0d",
+              "name": "Free-text sub-breed information.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "breed",
+                    ":breed",
+                    ":subBreed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "breed",
+                      "description": "(Required) Master breed name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subBreed",
+                      "description": "(Required) Sub-breed name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"hound\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "73d16400-87b0-4200-90cf-89430815d906",
+              "name": "No info file exists for this sub-breed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "breed",
+                    ":breed",
+                    ":subBreed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "breed",
+                      "description": "(Required) Master breed name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subBreed",
+                      "description": "(Required) Sub-breed name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"message\": \"Breed not found (main breed does not exist)\",\n  \"code\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://dog.ceo/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b0a823c8-1b61-466b-9273-183babb0fbf7",
+    "name": "Dog Breeds Info API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Dog API (dog.ceo) is the internet's largest collection of open-source dog pictures, exposing over 20,000 dog images accessible by more than 120 breeds. The API is free, requires no authentication, and returns JSON. An optional `alt` variant returns image URLs paired with descriptive alt text for accessibility. The canonical implementation is the open-source PHP Symfony project at github.com/ElliottLandsborough/dog-ceo-api, licensed MIT.\n\nContact Support:\n Name: Dog API",
+      "type": "text/plain"
+    }
+  }
+}

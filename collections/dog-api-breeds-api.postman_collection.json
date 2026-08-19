@@ -1,0 +1,849 @@
+{
+  "item": [
+    {
+      "id": "18b11b7e-007a-44a7-bf1d-1297125822d8",
+      "name": "Breeds",
+      "description": {
+        "content": "List and look up master breeds and their sub-breeds.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "67f4d630-122e-4352-87fc-a1c47027369f",
+          "name": "Dog API List All Breeds",
+          "request": {
+            "name": "Dog API List All Breeds",
+            "description": {
+              "content": "Returns the complete master breed list with each breed's sub-breeds (if any).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "breeds",
+                "list",
+                "all"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a81b1cc5-37df-4875-83bb-13dd26bc630b",
+              "name": "Successful response with master breed list.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "breeds",
+                    "list",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": {\n    \"hound\": [\n      \"afghan\",\n      \"basset\",\n      \"blood\",\n      \"english\"\n    ],\n    \"retriever\": [\n      \"chesapeake\",\n      \"curly\",\n      \"flatcoated\",\n      \"golden\"\n    ],\n    \"spaniel\": [\n      \"blenheim\",\n      \"brittany\",\n      \"cocker\",\n      \"irish\"\n    ]\n  },\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "81c13b63-00cb-4b25-aa18-44f327bb83b7",
+          "name": "Dog API Random Breed Entry",
+          "request": {
+            "name": "Dog API Random Breed Entry",
+            "description": {
+              "content": "Returns a single randomly selected entry from the master breed list (one breed mapped to its sub-breeds).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "breeds",
+                "list",
+                "all",
+                "random"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e9add0c5-312c-41d1-8625-767233652167",
+              "name": "A single random breed and its sub-breeds.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "breeds",
+                    "list",
+                    "all",
+                    "random"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": {\n    \"hound\": [\n      \"afghan\",\n      \"basset\",\n      \"blood\",\n      \"english\"\n    ],\n    \"retriever\": [\n      \"chesapeake\",\n      \"curly\",\n      \"flatcoated\",\n      \"golden\"\n    ],\n    \"spaniel\": [\n      \"blenheim\",\n      \"brittany\",\n      \"cocker\",\n      \"irish\"\n    ]\n  },\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fae41807-3495-4440-a661-2306e434922a",
+          "name": "Dog API Multiple Random Breed Entries",
+          "request": {
+            "name": "Dog API Multiple Random Breed Entries",
+            "description": {
+              "content": "Returns multiple randomly selected entries from the master breed list.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "breeds",
+                "list",
+                "all",
+                "random",
+                ":amount"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "amount",
+                  "description": "(Required) Number of random breed entries to return."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "120685ef-978d-4d83-9caf-956a90f1ef4d",
+              "name": "A map of random breeds to their sub-breeds.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "breeds",
+                    "list",
+                    "all",
+                    "random",
+                    ":amount"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "amount",
+                      "description": "(Required) Number of random breed entries to return."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": {\n    \"hound\": [\n      \"afghan\",\n      \"basset\",\n      \"blood\",\n      \"english\"\n    ],\n    \"retriever\": [\n      \"chesapeake\",\n      \"curly\",\n      \"flatcoated\",\n      \"golden\"\n    ],\n    \"spaniel\": [\n      \"blenheim\",\n      \"brittany\",\n      \"cocker\",\n      \"irish\"\n    ]\n  },\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "951c3641-72b5-473b-8628-cb129cbcb851",
+          "name": "Dog API List Top-Level Breeds",
+          "request": {
+            "name": "Dog API List Top-Level Breeds",
+            "description": {
+              "content": "Returns the list of all top-level (master) breed names without sub-breeds.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "breeds",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f836c9ab-1017-4626-b405-41554cc0ad8f",
+              "name": "An array of top-level breed names.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "breeds",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": [\n    \"afghan\",\n    \"basset\",\n    \"blood\",\n    \"english\"\n  ],\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0e168597-3027-4da8-b272-1b4a6e55ab72",
+          "name": "Dog API Random Top-Level Breed",
+          "request": {
+            "name": "Dog API Random Top-Level Breed",
+            "description": {
+              "content": "Returns a single randomly selected top-level breed name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "breeds",
+                "list",
+                "random"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "18413cea-3a53-4464-b2f8-c02f2a61f4bf",
+              "name": "A single random top-level breed name.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "breeds",
+                    "list",
+                    "random"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"hound\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1c273807-fdc3-4b3b-9d74-0496c948e09b",
+          "name": "Dog API Multiple Random Top-Level Breeds",
+          "request": {
+            "name": "Dog API Multiple Random Top-Level Breeds",
+            "description": {
+              "content": "Returns multiple randomly selected top-level breed names.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "breeds",
+                "list",
+                "random",
+                ":amount"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "amount",
+                  "description": "(Required) Number of random top-level breed names to return."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c542927a-7048-42f3-8306-cae0bd131ffd",
+              "name": "An array of random top-level breed names.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "breeds",
+                    "list",
+                    "random",
+                    ":amount"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "amount",
+                      "description": "(Required) Number of random top-level breed names to return."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": [\n    \"afghan\",\n    \"basset\",\n    \"blood\",\n    \"english\"\n  ],\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2124b7d1-849c-4c38-bed4-68919dc7b987",
+          "name": "Dog API List Sub-Breeds",
+          "request": {
+            "name": "Dog API List Sub-Breeds",
+            "description": {
+              "content": "Returns the list of sub-breeds for the given master breed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "breed",
+                ":breed",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "breed",
+                  "description": "(Required) Master breed name (e.g., hound, retriever, spaniel)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "efb08ba4-c7cc-44b7-80d2-414908cfa46b",
+              "name": "An array of sub-breed names.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "breed",
+                    ":breed",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "breed",
+                      "description": "(Required) Master breed name (e.g., hound, retriever, spaniel)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": [\n    \"afghan\",\n    \"basset\",\n    \"blood\",\n    \"english\"\n  ],\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ee99db04-270b-43eb-a5ac-d76a8fe1e820",
+              "name": "Breed not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "breed",
+                    ":breed",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "breed",
+                      "description": "(Required) Master breed name (e.g., hound, retriever, spaniel)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"message\": \"Breed not found (main breed does not exist)\",\n  \"code\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "030166e3-a85c-4151-9c13-8d8dbbece537",
+          "name": "Dog API Random Sub-Breed",
+          "request": {
+            "name": "Dog API Random Sub-Breed",
+            "description": {
+              "content": "Returns a single random sub-breed for the given master breed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "breed",
+                ":breed",
+                "list",
+                "random"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "breed",
+                  "description": "(Required) Master breed name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "afa5aa51-c903-4b7f-9d21-bb6630094dde",
+              "name": "A single random sub-breed name.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "breed",
+                    ":breed",
+                    "list",
+                    "random"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "breed",
+                      "description": "(Required) Master breed name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"hound\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8de1c27a-4ff0-4ceb-8f6f-96a6a04bafbe",
+          "name": "Dog API Multiple Random Sub-Breeds",
+          "request": {
+            "name": "Dog API Multiple Random Sub-Breeds",
+            "description": {
+              "content": "Returns multiple random sub-breeds for the given master breed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "breed",
+                ":breed",
+                "list",
+                "random",
+                ":amount"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "breed",
+                  "description": "(Required) Master breed name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "amount",
+                  "description": "(Required) Number of random sub-breeds to return."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "05443907-016c-4505-bca8-88891702ed87",
+              "name": "An array of random sub-breed names.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "breed",
+                    ":breed",
+                    "list",
+                    "random",
+                    ":amount"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "breed",
+                      "description": "(Required) Master breed name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "amount",
+                      "description": "(Required) Number of random sub-breeds to return."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": [\n    \"afghan\",\n    \"basset\",\n    \"blood\",\n    \"english\"\n  ],\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://dog.ceo/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "cda0eb62-d439-49b0-8526-0055da6728ba",
+    "name": "Dog Breeds API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Dog API (dog.ceo) is the internet's largest collection of open-source dog pictures, exposing over 20,000 dog images accessible by more than 120 breeds. The API is free, requires no authentication, and returns JSON. An optional `alt` variant returns image URLs paired with descriptive alt text for accessibility. The canonical implementation is the open-source PHP Symfony project at github.com/ElliottLandsborough/dog-ceo-api, licensed MIT.\n\nContact Support:\n Name: Dog API",
+      "type": "text/plain"
+    }
+  }
+}
