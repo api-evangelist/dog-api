@@ -21,6 +21,11 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/dog-api.png
 tags:
   - Dogs
+  - Image
+  - Open Data
+  - Open-Source
+tags_raw:
+  - Dogs
   - Images
   - Open Data
   - Open Source
@@ -80,6 +85,8 @@ apis:
   humanURL: https://dog.ceo/dog-api/
   baseURL: https://dog.ceo/api
   tags:
+  - Image
+  tags_raw:
   - Images
   properties:
   - type: OpenAPI
