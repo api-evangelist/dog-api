@@ -1,9 +1,7 @@
 {
   "provider": "dog-api",
   "sources": [
-    "dog-api-breeds-api-openapi.yml",
-    "dog-api-images-api-openapi.yml",
-    "dog-api-info-api-openapi.yml"
+    "_ae-authored/dog-api.yml"
   ],
   "outputs": [
     "dog-api-breeds-api-openapi.yml",
@@ -14,10 +12,13 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "dog-api-breeds-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "dog-api-images-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "dog-api-info-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "dog-api.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "dog-api-breeds-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "dog-api-images-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "dog-api-info-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

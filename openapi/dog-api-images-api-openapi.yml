@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Dog Breeds Images API
+  title: Dog Images API
   description: The Dog API (dog.ceo) is the internet's largest collection of open-source dog pictures, exposing over 20,000 dog images accessible by more than 120 breeds. The API is free, requires no authentication, and returns JSON. An optional `alt` variant returns image URLs paired with descriptive alt text for accessibility. The canonical implementation is the open-source PHP Symfony project at github.com/ElliottLandsborough/dog-ceo-api, licensed MIT.
   version: 1.1.0
   contact:
@@ -552,6 +552,22 @@ components:
           - success
           - error
           example: success
+    AltImage:
+      type: object
+      description: A dog image URL paired with descriptive alt text suitable for accessibility.
+      required:
+      - url
+      - altText
+      properties:
+        url:
+          type: string
+          format: uri
+          description: URL of the dog image.
+          example: https://images.dog.ceo/breeds/hound-basset/n02088238_2217.jpg
+        altText:
+          type: string
+          description: Human-readable alt text describing the image (typically "{Sub-breed} {breed} dog").
+          example: Basset hound dog
     ImageListResponse:
       type: object
       description: Response envelope returning a list of dog image URLs.
@@ -573,22 +589,6 @@ components:
           - success
           - error
           example: success
-    AltImage:
-      type: object
-      description: A dog image URL paired with descriptive alt text suitable for accessibility.
-      required:
-      - url
-      - altText
-      properties:
-        url:
-          type: string
-          format: uri
-          description: URL of the dog image.
-          example: https://images.dog.ceo/breeds/hound-basset/n02088238_2217.jpg
-        altText:
-          type: string
-          description: Human-readable alt text describing the image (typically "{Sub-breed} {breed} dog").
-          example: Basset hound dog
     ImageResponse:
       type: object
       description: Response envelope returning a single dog image URL.
