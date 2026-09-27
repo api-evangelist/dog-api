@@ -8,15 +8,19 @@ kind: contract
 x-type: opensource
 deliveryModel:
   model: saas
-  open_source: false
+  license_evidence:
+    not_product:
+    - elliottlandsborough/dog-ceo-api
+  open_source: unknown
   commercial: true
   callable_host: true
   label: Hosted service · you call their endpoint
-  confidence: high
+  confidence: low
   source:
   - openapi
   - pricing
-  generated: '2026-08-28'
+  - repository-not-product
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: freemium
@@ -35,12 +39,13 @@ tags:
   - Dogs
   - Image
   - Open Data
-  - Open-Source
+  - Open Source
 tags_raw:
   - Dogs
   - Images
   - Open Data
   - Open Source
+  - Open-Source
 url: https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/apis.yml
 created: '2024-11-14'
 modified: '2026-05-30'

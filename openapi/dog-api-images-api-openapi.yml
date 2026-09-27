@@ -533,6 +533,25 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ImageResponse:
+      type: object
+      description: Response envelope returning a single dog image URL.
+      required:
+      - message
+      - status
+      properties:
+        message:
+          type: string
+          format: uri
+          description: URL of the dog image.
+          example: https://images.dog.ceo/breeds/hound-afghan/n02088094_1003.jpg
+        status:
+          type: string
+          description: Outcome marker; "success" when the request succeeded.
+          enum:
+          - success
+          - error
+          example: success
     AltImageListResponse:
       type: object
       description: Response envelope returning a list of image objects each containing a URL and alt text.
@@ -545,6 +564,27 @@ components:
           description: List of image objects with URL and alt text.
           items:
             $ref: '#/components/schemas/AltImage'
+        status:
+          type: string
+          description: Outcome marker; "success" when the request succeeded.
+          enum:
+          - success
+          - error
+          example: success
+    ImageListResponse:
+      type: object
+      description: Response envelope returning a list of dog image URLs.
+      required:
+      - message
+      - status
+      properties:
+        message:
+          type: array
+          description: List of dog image URLs.
+          items:
+            type: string
+            format: uri
+            example: https://images.dog.ceo/breeds/hound-afghan/n02088094_1003.jpg
         status:
           type: string
           description: Outcome marker; "success" when the request succeeded.
@@ -568,43 +608,3 @@ components:
           type: string
           description: Human-readable alt text describing the image (typically "{Sub-breed} {breed} dog").
           example: Basset hound dog
-    ImageListResponse:
-      type: object
-      description: Response envelope returning a list of dog image URLs.
-      required:
-      - message
-      - status
-      properties:
-        message:
-          type: array
-          description: List of dog image URLs.
-          items:
-            type: string
-            format: uri
-            example: https://images.dog.ceo/breeds/hound-afghan/n02088094_1003.jpg
-        status:
-          type: string
-          description: Outcome marker; "success" when the request succeeded.
-          enum:
-          - success
-          - error
-          example: success
-    ImageResponse:
-      type: object
-      description: Response envelope returning a single dog image URL.
-      required:
-      - message
-      - status
-      properties:
-        message:
-          type: string
-          format: uri
-          description: URL of the dog image.
-          example: https://images.dog.ceo/breeds/hound-afghan/n02088094_1003.jpg
-        status:
-          type: string
-          description: Outcome marker; "success" when the request succeeded.
-          enum:
-          - success
-          - error
-          example: success

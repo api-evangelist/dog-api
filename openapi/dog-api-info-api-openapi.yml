@@ -120,24 +120,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    StringResponse:
-      type: object
-      description: Response envelope returning a single string value (a single breed name or free-text info).
-      required:
-      - message
-      - status
-      properties:
-        message:
-          type: string
-          description: The returned string value.
-          example: hound
-        status:
-          type: string
-          description: Outcome marker; "success" when the request succeeded.
-          enum:
-          - success
-          - error
-          example: success
     ErrorResponse:
       type: object
       description: Response envelope returned when an API request fails (e.g., unknown breed).
@@ -160,3 +142,21 @@ components:
           type: integer
           description: HTTP status code echoed in the response body.
           example: 404
+    StringResponse:
+      type: object
+      description: Response envelope returning a single string value (a single breed name or free-text info).
+      required:
+      - message
+      - status
+      properties:
+        message:
+          type: string
+          description: The returned string value.
+          example: hound
+        status:
+          type: string
+          description: Outcome marker; "success" when the request succeeded.
+          enum:
+          - success
+          - error
+          example: success
