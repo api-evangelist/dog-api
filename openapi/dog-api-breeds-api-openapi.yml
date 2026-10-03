@@ -362,19 +362,17 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    StringListResponse:
+    StringResponse:
       type: object
-      description: Response envelope returning a list of strings (e.g., breed or sub-breed names).
+      description: Response envelope returning a single string value (a single breed name or free-text info).
       required:
       - message
       - status
       properties:
         message:
-          type: array
-          description: List of string values.
-          items:
-            type: string
-            example: afghan
+          type: string
+          description: The returned string value.
+          example: hound
         status:
           type: string
           description: Outcome marker; "success" when the request succeeded.
@@ -382,28 +380,6 @@ components:
           - success
           - error
           example: success
-    ErrorResponse:
-      type: object
-      description: Response envelope returned when an API request fails (e.g., unknown breed).
-      required:
-      - status
-      - message
-      - code
-      properties:
-        status:
-          type: string
-          description: Outcome marker; "error" when the request failed.
-          enum:
-          - error
-          example: error
-        message:
-          type: string
-          description: Human-readable error description.
-          example: Breed not found (main breed does not exist)
-        code:
-          type: integer
-          description: HTTP status code echoed in the response body.
-          example: 404
     BreedListResponse:
       type: object
       description: Response envelope returning a map of master breed names to their sub-breed lists.
@@ -434,17 +410,41 @@ components:
           - success
           - error
           example: success
-    StringResponse:
+    ErrorResponse:
       type: object
-      description: Response envelope returning a single string value (a single breed name or free-text info).
+      description: Response envelope returned when an API request fails (e.g., unknown breed).
+      required:
+      - status
+      - message
+      - code
+      properties:
+        status:
+          type: string
+          description: Outcome marker; "error" when the request failed.
+          enum:
+          - error
+          example: error
+        message:
+          type: string
+          description: Human-readable error description.
+          example: Breed not found (main breed does not exist)
+        code:
+          type: integer
+          description: HTTP status code echoed in the response body.
+          example: 404
+    StringListResponse:
+      type: object
+      description: Response envelope returning a list of strings (e.g., breed or sub-breed names).
       required:
       - message
       - status
       properties:
         message:
-          type: string
-          description: The returned string value.
-          example: hound
+          type: array
+          description: List of string values.
+          items:
+            type: string
+            example: afghan
         status:
           type: string
           description: Outcome marker; "success" when the request succeeded.
