@@ -533,41 +533,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ImageResponse:
-      type: object
-      description: Response envelope returning a single dog image URL.
-      required:
-      - message
-      - status
-      properties:
-        message:
-          type: string
-          format: uri
-          description: URL of the dog image.
-          example: https://images.dog.ceo/breeds/hound-afghan/n02088094_1003.jpg
-        status:
-          type: string
-          description: Outcome marker; "success" when the request succeeded.
-          enum:
-          - success
-          - error
-          example: success
-    AltImage:
-      type: object
-      description: A dog image URL paired with descriptive alt text suitable for accessibility.
-      required:
-      - url
-      - altText
-      properties:
-        url:
-          type: string
-          format: uri
-          description: URL of the dog image.
-          example: https://images.dog.ceo/breeds/hound-basset/n02088238_2217.jpg
-        altText:
-          type: string
-          description: Human-readable alt text describing the image (typically "{Sub-breed} {breed} dog").
-          example: Basset hound dog
     AltImageListResponse:
       type: object
       description: Response envelope returning a list of image objects each containing a URL and alt text.
@@ -601,6 +566,41 @@ components:
             type: string
             format: uri
             example: https://images.dog.ceo/breeds/hound-afghan/n02088094_1003.jpg
+        status:
+          type: string
+          description: Outcome marker; "success" when the request succeeded.
+          enum:
+          - success
+          - error
+          example: success
+    AltImage:
+      type: object
+      description: A dog image URL paired with descriptive alt text suitable for accessibility.
+      required:
+      - url
+      - altText
+      properties:
+        url:
+          type: string
+          format: uri
+          description: URL of the dog image.
+          example: https://images.dog.ceo/breeds/hound-basset/n02088238_2217.jpg
+        altText:
+          type: string
+          description: Human-readable alt text describing the image (typically "{Sub-breed} {breed} dog").
+          example: Basset hound dog
+    ImageResponse:
+      type: object
+      description: Response envelope returning a single dog image URL.
+      required:
+      - message
+      - status
+      properties:
+        message:
+          type: string
+          format: uri
+          description: URL of the dog image.
+          example: https://images.dog.ceo/breeds/hound-afghan/n02088094_1003.jpg
         status:
           type: string
           description: Outcome marker; "success" when the request succeeded.
