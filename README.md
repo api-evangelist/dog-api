@@ -1,4 +1,4 @@
-# Dog API (dog-api)
+# Dog API
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,72 +66,173 @@
 
 The internet's biggest collection of open-source dog pictures. Fetching over 20,000 dog images accessible by more than 120 breeds via a free, no-auth REST API returning JSON. Optional alt-text variants pair every image URL with descriptive text for accessibility.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/apis.yml)
+**Areas:** Dogs · Image · Open Data · Open Source
 
-## Scope
+## Dog API on APIs.io
 
-- **Position:** Consuming
-- **Access:** 3rd-Party
+Everything profiled for Dog API is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/dog-api/](https://apis.io/providers/dog-api/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (3)
 
-- Dogs
-- Images
-- Open Data
-- Open Source
+- [Dog API Breeds API](https://apis.io/apis/dog-api/dog-api-breeds-api/) — List and look up master breeds and their sub-breeds.
+- [Dog API Images API](https://apis.io/apis/dog-api/dog-api-images-api/) — Fetch random or breed-specific dog images (with optional alt text).
+- [Dog API Info API](https://apis.io/apis/dog-api/dog-api-info-api/) — Look up free-text breed information where available.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2024-11-14
-- **Modified:** 2026-05-30
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Dog API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The Dog API (dog.ceo) is the internet's largest collection of open-source dog pictures, exposing over 20,000 images across 120+ breeds. The API requires no authentication and returns JSON. The canonical implementation is the open-source PHP Symfony project at github.com/ElliottLandsborough/dog-ceo-api, MIT licensed.
+- [Dog Api Agentic Access](https://apis.io/agentic-access/dog-api/dog-api-agentic-access/)
 
-- **Human URL:** [https://dog.ceo/dog-api/](https://dog.ceo/dog-api/)
-- **Base URL:** `https://dog.ceo/api`
+#### JSON Schema (8)
 
-#### Tags
+The data models the API reads and writes.
 
-- Dogs
-- Images
-- Open Data
+- [AltImage](https://apis.io/schemas/dog-api/dog-api-alt-image/)
+- [AltImageListResponse](https://apis.io/schemas/dog-api/dog-api-alt-image-list-response/)
+- [BreedListResponse](https://apis.io/schemas/dog-api/dog-api-breed-list-response/)
+- [ErrorResponse](https://apis.io/schemas/dog-api/dog-api-error-response/)
+- [ImageListResponse](https://apis.io/schemas/dog-api/dog-api-image-list-response/)
+- [ImageResponse](https://apis.io/schemas/dog-api/dog-api-image-response/)
+- [StringListResponse](https://apis.io/schemas/dog-api/dog-api-string-list-response/)
+- [StringResponse](https://apis.io/schemas/dog-api/dog-api-string-response/)
 
-#### Properties
+#### JSON Structure (8)
 
-- [Documentation](https://dog.ceo/dog-api/documentation)
-- [Git Hub](https://github.com/ElliottLandsborough/dog-ceo-api)
-- [Source Images](https://github.com/jigsawpieces/dog-api-images)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/openapi/dog-api.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Rules](https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/rules/dog-api-rules.yml)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/json-schema/dog-api-breed-list-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/json-structure/dog-api-breed-list-response-structure.json)
-- [JSON-LD](https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/json-ld/dog-api.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [J S O N L D Context](https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/json-ld/dog-api-context.jsonld)
-- [Vocabulary](https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/vocabulary/dog-api.yml)
-- [Plans](https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/plans/dog-api-plans-pricing.yml)
-- [Rate Limits](https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/rate-limits/dog-api-rate-limits.yml)
-- [Fin Ops](https://raw.githubusercontent.com/api-evangelist/dog-api/refs/heads/main/finops/dog-api-finops.yml)
-- [Postman Collection](collections/dog-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/dog-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Data models expressed in JSON Structure.
 
-## Common Properties
+- [Dog Api Alt Image List Response Structure](https://apis.io/json-structure/dog-api/dog-api-alt-image-list-response-structure/)
+- [Dog Api Alt Image Structure](https://apis.io/json-structure/dog-api/dog-api-alt-image-structure/)
+- [Dog Api Breed List Response Structure](https://apis.io/json-structure/dog-api/dog-api-breed-list-response-structure/)
+- [Dog Api Error Response Structure](https://apis.io/json-structure/dog-api/dog-api-error-response-structure/)
+- [Dog Api Image List Response Structure](https://apis.io/json-structure/dog-api/dog-api-image-list-response-structure/)
+- [Dog Api Image Response Structure](https://apis.io/json-structure/dog-api/dog-api-image-response-structure/)
+- [Dog Api String List Response Structure](https://apis.io/json-structure/dog-api/dog-api-string-list-response-structure/)
+- [Dog Api String Response Structure](https://apis.io/json-structure/dog-api/dog-api-string-response-structure/)
+
+#### JSON-LD (2)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Dog Api Context](https://apis.io/jsonld/dog-api/dog-api/)
+- [Dog Api Context](https://apis.io/jsonld/dog-api/dog-api-context/)
+
+#### Examples (11)
+
+Example requests and responses.
+
+- [Breed Images](https://apis.io/examples/dog-api/breed-images/)
+- [Dog Api Alt Image Example](https://apis.io/examples/dog-api/dog-api-alt-image-example/)
+- [Dog Api Alt Image List Response Example](https://apis.io/examples/dog-api/dog-api-alt-image-list-response-example/)
+- [Dog Api Breed List Response Example](https://apis.io/examples/dog-api/dog-api-breed-list-response-example/)
+- [Dog Api Error Response Example](https://apis.io/examples/dog-api/dog-api-error-response-example/)
+- [Dog Api Image List Response Example](https://apis.io/examples/dog-api/dog-api-image-list-response-example/)
+- [Dog Api Image Response Example](https://apis.io/examples/dog-api/dog-api-image-response-example/)
+- [Dog Api String List Response Example](https://apis.io/examples/dog-api/dog-api-string-list-response-example/)
+- [Dog Api String Response Example](https://apis.io/examples/dog-api/dog-api-string-response-example/)
+- [List All Breeds](https://apis.io/examples/dog-api/list-all-breeds/)
+- [Random Image](https://apis.io/examples/dog-api/random-image/)
+
+#### Collections (4)
+
+Postman and Open Collection request collections.
+
+- [Dog API](https://apis.io/collections/dog-api/open-dog-api/)
+- [Dog Breeds API](https://apis.io/collections/dog-api/open-dog-api-breeds-api/)
+- [Dog Breeds Images API](https://apis.io/collections/dog-api/open-dog-api-images-api/)
+- [Dog Breeds Info API](https://apis.io/collections/dog-api/open-dog-api-info-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Dog API — jsonschema rules](https://apis.io/rules/dog-api/dog-api-jsonschema-spectral-rules/)
+- [Dog API API Rules](https://apis.io/rules/dog-api/dog-api-rules/)
+
+#### Security (1)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Dog Api Domain Security](https://apis.io/security/dog-api/dog-api-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Dog Api Plans Pricing](https://apis.io/plans/dog-api/dog-api-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Dog Api Rate Limits](https://apis.io/rate-limits/dog-api/dog-api-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Dog Api Finops](https://apis.io/finops/dog-api/dog-api-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://dog.ceo)
 - [Documentation](https://dog.ceo/dog-api/documentation)
-- [Git Hub](https://github.com/ElliottLandsborough/dog-ceo-api)
-- [License](https://opensource.org/licenses/MIT)
-- [Tools](https://github.com/JithunMethusahan/dog-api-mcp-community)
-- [Code Examples](https://editor.p5js.org/codingtrain/sketches/lQxT7PTKC)
-- [Code Examples](https://codepen.io/elliottlan/pen/MNEWNx)
-- [Code Examples](https://codepen.io/elliottlan/pen/KOXKLG)
-- [Code Examples](https://github.com/LIVELUCKY/dogs)
-- [Code Examples](https://github.com/mrbrunelli/dog-time-decorator)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 20.6** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 62.5 |
+| Contract quality | 25.2 |
+| Contract governance | 27.3 |
+| Operational transparency | 13.2 |
+| Developer ergonomics | 9.5 |
+| Access clarity | 7.9 |
+
+**Agent readiness 32.5** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | na |
+| Error Semantics | verified |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 10.8** — Government & Public Sector
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/dog-api/](https://apis.io/providers/dog-api/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Dog API: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/dog-api/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
